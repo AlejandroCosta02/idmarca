@@ -12,6 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 
 const navigation = [
   { name: "Inicio", href: "/" },
@@ -47,9 +48,11 @@ export function Navigation() {
             ))}
           </div>
           <div className="flex items-center space-x-4">
-            <Button asChild>
-              <Link href="/contacto">Consultar</Link>
-            </Button>
+            <Link href="/contacto" className="inline-block">
+              <InteractiveHoverButton>
+                Consultar
+              </InteractiveHoverButton>
+            </Link>
           </div>
         </div>
 
@@ -78,9 +81,11 @@ export function Navigation() {
                   </Link>
                 ))}
                 <div className="pt-4">
-                  <Button asChild className="w-full">
-                    <Link href="/contacto">Consultar</Link>
-                  </Button>
+                  <Link href="/contacto" className="inline-block w-full">
+                    <InteractiveHoverButton className="w-full">
+                      Consultar
+                    </InteractiveHoverButton>
+                  </Link>
                 </div>
               </div>
             </SheetContent>

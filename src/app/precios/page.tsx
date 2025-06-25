@@ -19,6 +19,7 @@ import {
   Users,
   Zap
 } from "lucide-react"
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 
 const pricingPlans = [
   {
@@ -277,7 +278,11 @@ export default function PreciosPage() {
                     {service.price}
                   </div>
                   <Button asChild variant="outline" className="w-full">
-                    <Link href="/contacto">Consultar</Link>
+                    <Link href="/contacto" className="inline-block w-full">
+                      <InteractiveHoverButton className="w-full">
+                        Consultar
+                      </InteractiveHoverButton>
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Merriweather_Sans, Roboto } from "next/font/google";
 import "./globals.css";
+import ClickSpark from "@/components/click-spark";
 
 const inter = Inter({ subsets: ["latin"] });
 const merriweatherSans = Merriweather_Sans({ subsets: ["latin"], variable: "--font-merriweather-sans" });
@@ -53,7 +54,9 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body className={`${roboto.variable} ${merriweatherSans.variable} font-sans`}>
-        {children}
+        <ClickSpark sparkColor="#F59E0C" duration={500}>
+          {children}
+        </ClickSpark>
       </body>
     </html>
   );

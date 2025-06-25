@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { ArrowRight, Check } from "lucide-react"
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 
 interface ServiceCardProps {
   title: string
@@ -55,7 +56,7 @@ export function ServiceCard({
           ))}
         </ul>
         <Button asChild className="w-full">
-          <Link href={href}>
+          <Link href={href} className="inline-block w-full">
             Consultar
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>

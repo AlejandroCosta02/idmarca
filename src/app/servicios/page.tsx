@@ -19,6 +19,8 @@ import {
   Users,
   Zap
 } from "lucide-react"
+import TiltedCard from "@/components/tilted-card"
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 
 const services = [
   {
@@ -259,7 +261,7 @@ export default function ServiciosPage() {
                   </div>
                   
                   <Button asChild className="w-full">
-                    <Link href={service.href}>
+                    <Link href={service.href} className="inline-block w-full">
                       Consultar {service.title}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
@@ -285,20 +287,22 @@ export default function ServiciosPage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
-              <Card key={index} className="text-center relative">
-                <CardHeader>
-                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <step.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                    {step.step}
-                  </div>
-                  <CardTitle className="text-lg">{step.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription>{step.description}</CardDescription>
-                </CardContent>
-              </Card>
+              <TiltedCard key={index} containerHeight="260px" className="bg-transparent">
+                <Card className="text-center bg-transparent border border-border shadow-lg h-full">
+                  <CardHeader>
+                    <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                      <step.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
+                      {step.step}
+                    </div>
+                    <CardTitle className="text-lg">{step.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription>{step.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </TiltedCard>
             ))}
           </div>
         </div>

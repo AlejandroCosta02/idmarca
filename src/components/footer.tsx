@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Separator } from "@/components/ui/separator"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const footerLinks = {
   servicios: [
@@ -115,7 +116,7 @@ export function Footer() {
             </p>
           </div>
           
-          <div className="flex space-x-6">
+          <div className="flex items-center space-x-6">
             <Link
               href="/privacidad"
               className="text-sm text-muted-foreground transition-colors hover:text-primary"
@@ -134,6 +135,7 @@ export function Footer() {
             >
               Cookies
             </Link>
+            <ThemeToggle />
           </div>
         </div>
       </div>

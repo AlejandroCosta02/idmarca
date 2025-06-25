@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 const navigation = [
   { name: "Inicio", href: "/" },
@@ -48,6 +49,7 @@ export function Navigation() {
             ))}
           </div>
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Link href="/contacto" className="inline-block">
               <InteractiveHoverButton>
                 Consultar
@@ -80,9 +82,10 @@ export function Navigation() {
                     {item.name}
                   </Link>
                 ))}
-                <div className="pt-4">
-                  <Link href="/contacto" className="inline-block w-full">
-                    <InteractiveHoverButton className="w-full">
+                <div className="flex items-center justify-between pt-4">
+                  <ThemeToggle />
+                  <Link href="/contacto" className="inline-block">
+                    <InteractiveHoverButton>
                       Consultar
                     </InteractiveHoverButton>
                   </Link>

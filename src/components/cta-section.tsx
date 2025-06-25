@@ -56,7 +56,7 @@ export function CTASection({
             )}
           </div>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-muted-foreground">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-foreground">
             <div className="flex items-center space-x-2">
               <Phone className="h-4 w-4" />
               <span>+54 11 1234-5678</span>

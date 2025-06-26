@@ -108,12 +108,11 @@ export default function HomePage() {
                 Especialistas en Propiedad Intelectual
               </Badge>
               <h1 className="text-4xl lg:text-6xl font-bold leading-tight font-hero-title">
-                Registro de Marcas en{" "}
-                <span className="text-primary">Argentina</span>
+                IDmarca.{" "}
+                <span className="text-primary">Identidad protegida. Valor Asegurado</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl">
-                Protege tu marca comercial con nuestros servicios profesionales de registro ante INPI. 
-                Asesoramiento experto y seguimiento completo de tu trámite.
+                Protege tu marca comercial con nuestro servicio de registro profesional. Te ofrecemos asesoramiento experto y un seguimiento completo para garantizar tu tranquilidad.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 items-stretch">
                 <Link href="/contacto" className="inline-block h-full">

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -35,7 +36,15 @@ export function Footer() {
           {/* Company Info */}
           <div className="space-y-4">
             <div>
-              <h3 className="text-lg font-bold text-primary">IDmarca</h3>
+              <Link href="/" className="inline-block">
+                <Image 
+                  src="/logos/signature.svg" 
+                  alt="IDmarca Signature" 
+                  width={100} 
+                  height={24} 
+                  className="h-6 w-auto"
+                />
+              </Link>
               <p className="mt-2 text-sm text-muted-foreground">
                 Especialistas en registro de marcas comerciales en Argentina.
                 Servicios profesionales ante INPI.

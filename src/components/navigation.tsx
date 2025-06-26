@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
+import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -28,6 +29,7 @@ const navigation = [
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
   const pathname = usePathname()
+  const { theme } = useTheme()
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -36,13 +38,16 @@ export function Navigation() {
     return pathname.startsWith(href)
   }
 
+  // Determine which logo to use based on theme
+  const logoSrc = theme === "dark" ? "/logos/logo-darkmode.svg" : "/logos/logo.svg"
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center">
         <div className="mr-8">
           <Link href="/" className="flex items-center space-x-2">
             <Image 
-              src="/logos/logo.svg" 
+              src={logoSrc}
               alt="IDmarca Logo" 
               width={120} 
               height={32} 
@@ -100,7 +105,7 @@ export function Navigation() {
               <SheetHeader>
                 <SheetTitle>
                   <Image 
-                    src="/logos/logo.svg" 
+                    src={logoSrc}
                     alt="IDmarca Logo" 
                     width={100} 
                     height={26} 

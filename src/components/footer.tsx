@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
+import { useTheme } from "next-themes"
 import { Separator } from "@/components/ui/separator"
 import { ThemeToggle } from "@/components/theme-toggle"
 
@@ -29,6 +32,8 @@ const footerLinks = {
 }
 
 export function Footer() {
+  const { theme } = useTheme()
+  
   return (
     <footer className="border-t bg-muted/50">
       <div className="container mx-auto py-12">
@@ -38,7 +43,7 @@ export function Footer() {
             <div>
               <Link href="/" className="inline-block">
                 <Image 
-                  src="/logos/signature.svg" 
+                  src="/logos/signature.svg"
                   alt="IDmarca Signature" 
                   width={100} 
                   height={24} 

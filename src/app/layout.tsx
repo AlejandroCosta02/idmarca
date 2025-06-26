@@ -3,7 +3,6 @@ import { Inter, Merriweather_Sans, Roboto } from "next/font/google";
 import "./globals.css";
 import ClickSpark from "@/components/click-spark";
 import { ThemeProvider } from "@/components/theme-provider";
-import { CustomCursor } from "@/components/custom-cursor";
 
 const inter = Inter({ subsets: ["latin"] });
 const merriweatherSans = Merriweather_Sans({ subsets: ["latin"], variable: "--font-merriweather-sans" });
@@ -60,7 +59,6 @@ export default function RootLayout({
           <ClickSpark sparkColor="#F59E0C" duration={500}>
             {children}
           </ClickSpark>
-          <CustomCursor />
         </ThemeProvider>
       </body>
     </html>

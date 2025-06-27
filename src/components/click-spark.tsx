@@ -38,32 +38,17 @@ const ClickSpark = ({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const parent = canvas.parentElement;
-    if (!parent) return;
-
-    let resizeTimeout: any;
-
     const resizeCanvas = () => {
-      const { width, height } = parent.getBoundingClientRect();
-      if (canvas.width !== width || canvas.height !== height) {
-        canvas.width = width;
-        canvas.height = height;
-      }
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
     };
-
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(resizeCanvas, 100);
-    };
-
-    const ro = new ResizeObserver(handleResize);
-    ro.observe(parent);
 
     resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
 
     return () => {
-      ro.disconnect();
-      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
@@ -91,9 +76,6 @@ const ClickSpark = ({
     if (!startTimeRef.current) {
       startTimeRef.current = currentTime;
     }
-
-    const elapsed = currentTime - startTimeRef.current;
-    const progress = Math.min(elapsed / duration, 1);
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);

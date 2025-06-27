@@ -20,6 +20,7 @@ import {
   AlertCircle
 } from "lucide-react"
 import { useState } from "react"
+import emailjs from '@emailjs/browser'
 
 const contactInfo = [
   {
@@ -80,15 +81,23 @@ export default function ContactoPage() {
     setSubmitMessage("")
 
     try {
-      // For now, we'll simulate email sending
-      // In production, you would integrate with EmailJS, SendGrid, or your backend API
-      await new Promise(resolve => setTimeout(resolve, 2000)) // Simulate API call
+      await emailjs.send(
+        'service_cvlah0f',
+        'template_waqg06t',
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          message: formData.message,
+        },
+        '2R13nYSjY94jA3pOG'
+      )
       
-      // Simulate successful email sending
       setSubmitStatus("success")
       setSubmitMessage("¡Gracias por tu consulta! Te contactaremos en menos de 24 horas.")
       
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -98,18 +107,9 @@ export default function ContactoPage() {
         message: ""
       })
       
-      // Log the form data (in production, this would be sent to your email service)
-      console.log("Form submitted:", {
-        ...formData,
-        to: "contacto@idmarca.com",
-        subject: `Nueva consulta: ${formData.service}`,
-        timestamp: new Date().toISOString()
-      })
-      
     } catch (error) {
       setSubmitStatus("error")
       setSubmitMessage("Hubo un error al enviar tu consulta. Por favor, inténtalo nuevamente.")
-      console.error("Form submission error:", error)
     } finally {
       setIsSubmitting(false)
     }

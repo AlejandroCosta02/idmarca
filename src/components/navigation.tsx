@@ -52,7 +52,7 @@ export function Navigation() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center justify-between">
         {/* Logo (always left) */}
-        <div className="flex items-center">
+        <div className="flex items-center md:mr-12">
           <Link href="/" className="flex items-center space-x-2">
             {mounted && (
               <Image 

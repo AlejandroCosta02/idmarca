@@ -52,22 +52,6 @@ const ClickSpark = ({
     };
   }, []);
 
-  const easeFunc = useCallback(
-    (t: number) => {
-      switch (easing) {
-        case "linear":
-          return t;
-        case "ease-in":
-          return t * t;
-        case "ease-in-out":
-          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-        default:
-          return t * (2 - t);
-      }
-    },
-    [easing]
-  );
-
   const animate = useCallback((currentTime: number) => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");

@@ -41,26 +41,26 @@ const values = [
   }
 ]
 
-const team = [
-  {
-    name: "Dr. María González",
-    role: "Directora General",
-    description: "Especialista en propiedad intelectual con más de 15 años de experiencia",
-    expertise: ["Derecho Comercial", "Propiedad Intelectual", "Gestión de Marcas"]
-  },
-  {
-    name: "Lic. Carlos Rodríguez",
-    role: "Asesor Legal Senior",
-    description: "Experto en registro de marcas y procedimientos ante INPI",
-    expertise: ["Registro de Marcas", "Oposiciones", "Renovaciones"]
-  },
-  {
-    name: "Dra. Ana Martínez",
-    role: "Especialista en Patentes",
-    description: "Especializada en patentes y modelos de utilidad",
-    expertise: ["Patentes", "Modelos de Utilidad", "Diseños Industriales"]
-  }
-]
+// const team = [
+//   {
+//     name: "Dr. María González",
+//     role: "Directora General",
+//     description: "Especialista en propiedad intelectual con más de 15 años de experiencia",
+//     expertise: ["Derecho Comercial", "Propiedad Intelectual", "Gestión de Marcas"]
+//   },
+//   {
+//     name: "Lic. Carlos Rodríguez",
+//     role: "Asesor Legal Senior",
+//     description: "Experto en registro de marcas y procedimientos ante INPI",
+//     expertise: ["Registro de Marcas", "Oposiciones", "Renovaciones"]
+//   },
+//   {
+//     name: "Dra. Ana Martínez",
+//     role: "Especialista en Patentes",
+//     description: "Especializada en patentes y modelos de utilidad",
+//     expertise: ["Patentes", "Modelos de Utilidad", "Diseños Industriales"]
+//   }
+// ]
 
 const stats = [
   { number: "500+", label: "Marcas Registradas", icon: Clock },

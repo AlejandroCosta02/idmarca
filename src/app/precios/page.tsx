@@ -8,16 +8,12 @@ import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { 
   ArrowRight, 
-  Check, 
-  X,
   FileText, 
   Search, 
-  RefreshCw, 
-  AlertTriangle,
-  Shield,
-  Users
+  Check,
+  X,
+  Shield
 } from "lucide-react"
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 
 const pricingPlans = [
   {
@@ -87,33 +83,6 @@ const pricingPlans = [
     popular: false,
     href: "/contacto",
     icon: Shield
-  }
-]
-
-const additionalServices = [
-  {
-    name: "Renovación de Marca",
-    description: "Renovación de registros existentes",
-    price: "$25.000",
-    icon: RefreshCw
-  },
-  {
-    name: "Oposición de Marca",
-    description: "Defensa de derechos de marca",
-    price: "$35.000",
-    icon: AlertTriangle
-  },
-  {
-    name: "Búsqueda Internacional",
-    description: "Búsqueda en bases de datos internacionales",
-    price: "$30.000",
-    icon: Search
-  },
-  {
-    name: "Asesoramiento Legal",
-    description: "Consulta legal especializada",
-    price: "$20.000",
-    icon: Users
   }
 ]
 
@@ -247,46 +216,6 @@ export default function PreciosPage() {
           </div>
         </div>
       </section>
-
-      {/* Additional Services */}
-      {/* <section className="py-20">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Servicios Adicionales
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Servicios complementarios para necesidades específicas
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {additionalServices.map((service, index) => (
-              <Card key={index} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{service.name}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-2xl font-bold text-primary mb-4">
-                    {service.price}
-                  </div>
-                  <Button asChild variant="outline" className="w-full">
-                    <Link href="/contacto" className="inline-block w-full">
-                      <InteractiveHoverButton className="w-full">
-                        Consultar
-                      </InteractiveHoverButton>
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section> */}
 
       {/* FAQ Section */}
       <section className="py-20 bg-muted/30">

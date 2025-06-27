@@ -22,7 +22,7 @@ import { Separator } from "@/components/ui/separator"
 import TiltedCard from "@/components/tilted-card"
 
 // Icon mapping for string icon names
-const iconMap: Record<string, any> = {
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   ArrowPathIcon: RefreshCw, // or another suitable icon
   PencilSquareIcon: Pencil,
   DocumentCheckIcon: FileCheck,

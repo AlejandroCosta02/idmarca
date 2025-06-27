@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import ClickSpark from "@/components/click-spark";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const geist = Geist({ subsets: ["latin"] });
-const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "IDmarca - Registro de Marcas en Argentina",

@@ -1,6 +1,24 @@
 "use client";
 import { useRef, useEffect, useCallback, ReactNode } from "react";
 
+interface Spark {
+  x: number
+  y: number
+  angle: number
+  startTime: number
+}
+
+interface ClickSparkProps {
+  children: React.ReactNode
+  sparkColor?: string
+  sparkSize?: number
+  sparkRadius?: number
+  sparkCount?: number
+  duration?: number
+  easing?: string
+  extraScale?: number
+}
+
 const ClickSpark = ({
   sparkColor = "#F59E0C",
   sparkSize = 10,
@@ -10,18 +28,9 @@ const ClickSpark = ({
   easing = "ease-out",
   extraScale = 1.0,
   children,
-}: {
-  sparkColor?: string;
-  sparkSize?: number;
-  sparkRadius?: number;
-  sparkCount?: number;
-  duration?: number;
-  easing?: string;
-  extraScale?: number;
-  children: ReactNode;
-}) => {
+}: ClickSparkProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const sparksRef = useRef<any[]>([]);
+  const sparksRef = useRef<Spark[]>([]);
   const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -134,22 +143,22 @@ const ClickSpark = ({
   ]);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const rect = canvas.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
 
-    const now = performance.now();
-    const newSparks = Array.from({ length: sparkCount }, (_, i) => ({
+    const now = performance.now()
+    const newSparks: Spark[] = Array.from({ length: sparkCount }, (_, i) => ({
       x,
       y,
       angle: (2 * Math.PI * i) / sparkCount,
       startTime: now,
-    }));
+    }))
 
-    sparksRef.current.push(...newSparks);
-  };
+    sparksRef.current.push(...newSparks)
+  }
 
   return (
     <div className="relative w-full h-full" onClick={handleClick}>

@@ -32,8 +32,6 @@ const footerLinks = {
 }
 
 export function Footer() {
-  const { resolvedTheme } = useTheme()
-  
   return (
     <footer className="border-t bg-muted/50">
       <div className="container mx-auto py-12">

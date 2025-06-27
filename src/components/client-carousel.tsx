@@ -18,7 +18,7 @@ export function ClientCarousel({ clients }: ClientCarouselProps) {
   const [isHovered, setIsHovered] = React.useState(false)
   const containerRef = React.useRef<HTMLDivElement>(null)
   const pausedScrollRef = React.useRef(0)
-  const intervalRef = React.useRef<NodeJS.Timeout>()
+  const intervalRef = React.useRef<NodeJS.Timeout | null>(null)
 
   // Create a longer array for infinite scroll effect
   const infiniteClients = React.useMemo(() => {

@@ -15,7 +15,6 @@ interface ClickSparkProps {
   sparkRadius?: number
   sparkCount?: number
   duration?: number
-  easing?: string
   extraScale?: number
 }
 
@@ -25,7 +24,6 @@ const ClickSpark = ({
   sparkRadius = 50,
   sparkCount = 8,
   duration = 500,
-  easing = "ease-out",
   extraScale = 1.0,
   children,
 }: ClickSparkProps) => {

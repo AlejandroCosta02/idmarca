@@ -1,9 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
-import { ArrowRight, Phone, Mail } from "lucide-react"
+import { Phone, Mail } from "lucide-react"
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 import Image from "next/image"
 import { useTheme } from "next-themes"

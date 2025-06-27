@@ -9,16 +9,13 @@ import Link from "next/link"
 import { 
   ArrowRight, 
   Shield, 
+  Clock, 
   Users, 
+  CheckCircle, 
   Award, 
-  Target,
-  Eye,
-  Heart,
-  Zap,
-  CheckCircle,
-  FileText,
-  Search,
-  RefreshCw
+  Target, 
+  Heart, 
+  Star
 } from "lucide-react"
 
 const values = [
@@ -66,7 +63,7 @@ const team = [
 ]
 
 const stats = [
-  { number: "500+", label: "Marcas Registradas", icon: FileText },
+  { number: "500+", label: "Marcas Registradas", icon: Clock },
   { number: "98%", label: "Tasa de Éxito", icon: CheckCircle },
   { number: "10+", label: "Años de Experiencia", icon: Award },
   { number: "1000+", label: "Clientes Satisfechos", icon: Users }
@@ -305,7 +302,7 @@ export default function NosotrosPage() {
             <Card>
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Eye className="h-6 w-6 text-primary" />
+                  <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Transparencia Total</CardTitle>
               </CardHeader>
@@ -333,7 +330,7 @@ export default function NosotrosPage() {
             <Card>
               <CardHeader>
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-primary" />
+                  <Star className="h-6 w-6 text-primary" />
                 </div>
                 <CardTitle>Proceso Eficiente</CardTitle>
               </CardHeader>

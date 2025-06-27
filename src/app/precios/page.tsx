@@ -17,7 +17,9 @@ import {
   Shield,
   Clock,
   Users,
-  Zap
+  Zap,
+  CheckCircle, 
+  Star
 } from "lucide-react"
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 

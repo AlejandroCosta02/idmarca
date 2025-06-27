@@ -15,10 +15,7 @@ import {
   MapPin, 
   Clock, 
   Send,
-  MessageSquare,
-  FileText,
-  Users,
-  CheckCircle
+  CheckCircle 
 } from "lucide-react"
 import { useState } from "react"
 

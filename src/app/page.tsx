@@ -16,7 +16,6 @@ import {
   FileText, 
   Search,
   RefreshCw,
-  AlertTriangle,
   Star
 } from "lucide-react"
 import TiltedCard from "@/components/tilted-card"

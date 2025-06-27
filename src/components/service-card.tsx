@@ -2,8 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowRight, Check } from "lucide-react"
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
+import { ArrowRight, CheckCircle } from "lucide-react"
 
 interface ServiceCardProps {
   title: string
@@ -50,7 +49,7 @@ export function ServiceCard({
         <ul className="space-y-2">
           {features.map((feature, index) => (
             <li key={index} className="flex items-center space-x-2">
-              <Check className="h-4 w-4 text-primary flex-shrink-0" />
+              <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
               <span className="text-sm">{feature}</span>
             </li>
           ))}

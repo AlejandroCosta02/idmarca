@@ -32,7 +32,7 @@ const footerLinks = {
 }
 
 export function Footer() {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   
   return (
     <footer className="border-t bg-muted/50">

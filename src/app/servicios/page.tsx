@@ -1,11 +1,9 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
-import { ServiceCard } from "@/components/service-card"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 import { 
   ArrowRight, 
@@ -13,14 +11,14 @@ import {
   Search, 
   RefreshCw, 
   AlertTriangle,
-  Shield,
-  Clock,
-  CheckCircle,
-  Users,
+  CheckCircle, 
+  Users, 
+  Clock, 
+  Award,
   Zap
 } from "lucide-react"
+import { Separator } from "@/components/ui/separator"
 import TiltedCard from "@/components/tilted-card"
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 
 const services = [
   {

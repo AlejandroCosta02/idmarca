@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Merriweather_Sans, Roboto } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClickSpark from "@/components/click-spark";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
-const merriweatherSans = Merriweather_Sans({ subsets: ["latin"], variable: "--font-merriweather-sans" });
-const roboto = Roboto({ subsets: ["latin"], weight: ["100","300","400","500","700","900"], variable: "--font-roboto" });
+const geist = Geist({ subsets: ["latin"] });
+const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "IDmarca - Registro de Marcas en Argentina | INPI",
-  description: "Especialistas en registro de marcas comerciales en Argentina. Servicios profesionales de registro ante INPI con asesoramiento legal completo.",
-  keywords: "registro de marcas, INPI, Argentina, propiedad intelectual, marcas comerciales, patentes",
+  title: "IDmarca - Registro de Marcas en Argentina",
+  description: "Protege tu marca comercial con nuestro servicio de registro profesional ante INPI. Asesoramiento experto y seguimiento completo.",
+  keywords: "registro de marcas, INPI, propiedad intelectual, marcas comerciales, Argentina",
   authors: [{ name: "IDmarca" }],
   creator: "IDmarca",
   publisher: "IDmarca",
@@ -20,19 +19,22 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://idmarca.com'),
+  metadataBase: new URL("https://idmarca.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "IDmarca - Registro de Marcas en Argentina",
-    description: "Especialistas en registro de marcas comerciales en Argentina. Servicios profesionales ante INPI.",
-    url: 'https://idmarca.com',
-    siteName: 'IDmarca',
-    locale: 'es_AR',
-    type: 'website',
+    description: "Protege tu marca comercial con nuestro servicio de registro profesional ante INPI.",
+    url: "https://idmarca.com",
+    siteName: "IDmarca",
+    locale: "es_AR",
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: "IDmarca - Registro de Marcas en Argentina",
-    description: "Especialistas en registro de marcas comerciales en Argentina. Servicios profesionales ante INPI.",
+    description: "Protege tu marca comercial con nuestro servicio de registro profesional ante INPI.",
   },
   robots: {
     index: true,
@@ -40,9 +42,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -54,7 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`${roboto.variable} ${merriweatherSans.variable} font-sans`}>
+      <body className={`${geist.className} font-sans`}>
         <ThemeProvider>
           <ClickSpark sparkColor="#F59E0C" duration={500}>
             {children}

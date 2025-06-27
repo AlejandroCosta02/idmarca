@@ -32,7 +32,7 @@ const services = [
       "Seguimiento del trámite",
       "Certificado de registro"
     ],
-    price: "$45.000",
+    price: "$205.000 ARS",
     badge: "Principal",
     href: "/servicios",
     popular: true
@@ -46,7 +46,7 @@ const services = [
       "Informe detallado",
       "Recomendaciones"
     ],
-    price: "$15.000",
+    price: "$30.500 ARS",
     badge: "Básico",
     href: "/servicios"
   },
@@ -59,7 +59,7 @@ const services = [
       "Pago de tasas",
       "Seguimiento"
     ],
-    price: "$25.000",
+    price: "$155.000 ARS",
     badge: "Mantenimiento",
     href: "/servicios"
   }

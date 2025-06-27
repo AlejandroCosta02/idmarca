@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect, useCallback, ReactNode } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 interface Spark {
   x: number
@@ -21,8 +21,8 @@ interface ClickSparkProps {
 
 const ClickSpark = ({
   sparkColor = "#F59E0C",
-  sparkSize = 10,
-  sparkRadius = 15,
+  sparkSize = 2,
+  sparkRadius = 50,
   sparkCount = 8,
   duration = 500,
   easing = "ease-out",
@@ -32,6 +32,7 @@ const ClickSpark = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<Spark[]>([]);
   const startTimeRef = useRef<number | null>(null);
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -82,65 +83,50 @@ const ClickSpark = ({
     [easing]
   );
 
-  useEffect(() => {
+  const animate = useCallback((currentTime: number) => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
 
-    let animationId: number;
+    if (!startTimeRef.current) {
+      startTimeRef.current = currentTime;
+    }
 
-    const draw = (timestamp: number) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp;
-      }
-      if (!ctx) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const elapsed = currentTime - startTimeRef.current;
+    const progress = Math.min(elapsed / duration, 1);
 
-      sparksRef.current = sparksRef.current.filter((spark) => {
-        const elapsed = timestamp - spark.startTime;
-        if (elapsed >= duration) {
-          return false;
-        }
+    // Clear canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        const progress = elapsed / duration;
-        const eased = easeFunc(progress);
+    // Update and draw sparks
+    sparksRef.current = sparksRef.current.filter((spark) => {
+      const sparkElapsed = currentTime - spark.startTime;
+      const sparkProgress = Math.min(sparkElapsed / duration, 1);
 
-        const distance = eased * sparkRadius * extraScale;
-        const lineLength = sparkSize * (1 - eased);
+      if (sparkProgress >= 1) return false;
 
-        const x1 = spark.x + distance * Math.cos(spark.angle);
-        const y1 = spark.y + distance * Math.sin(spark.angle);
-        const x2 = spark.x + (distance + lineLength) * Math.cos(spark.angle);
-        const y2 = spark.y + (distance + lineLength) * Math.sin(spark.angle);
+      const distance = sparkRadius * sparkProgress * extraScale;
+      const x = spark.x + Math.cos(spark.angle) * distance;
+      const y = spark.y + Math.sin(spark.angle) * distance;
+      const alpha = 1 - sparkProgress;
 
-        if (!ctx) return false;
-        ctx.strokeStyle = sparkColor;
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = sparkColor;
+      ctx.beginPath();
+      ctx.arc(x, y, sparkSize, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.restore();
 
-        return true;
-      });
+      return true;
+    });
 
-      animationId = requestAnimationFrame(draw);
-    };
-
-    animationId = requestAnimationFrame(draw);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, [
-    sparkColor,
-    sparkSize,
-    sparkRadius,
-    sparkCount,
-    duration,
-    easeFunc,
-    extraScale,
-  ]);
+    if (sparksRef.current.length > 0) {
+      animationRef.current = requestAnimationFrame(animate);
+    } else {
+      startTimeRef.current = null;
+    }
+  }, [duration, sparkRadius, sparkSize, sparkColor, extraScale]);
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const canvas = canvasRef.current
@@ -159,6 +145,13 @@ const ClickSpark = ({
 
     sparksRef.current.push(...newSparks)
   }
+
+  useEffect(() => {
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      cancelAnimationFrame(animationRef.current!);
+    };
+  }, [animate]);
 
   return (
     <div className="relative w-full h-full" onClick={handleClick}>

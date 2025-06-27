@@ -89,6 +89,7 @@ const ClickSpark = ({
       animationRef.current = requestAnimationFrame(animate);
     } else {
       startTimeRef.current = null;
+      animationRef.current = null; // Clear the animation reference
     }
   }, [duration, sparkRadius, sparkSize, sparkColor, extraScale]);
 
@@ -109,10 +110,11 @@ const ClickSpark = ({
 
     sparksRef.current.push(...newSparks)
     
-    // Start animation if not already running
-    if (!animationRef.current) {
-      animationRef.current = requestAnimationFrame(animate);
+    // Always start animation on click, regardless of current state
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
     }
+    animationRef.current = requestAnimationFrame(animate);
   }
 
   return (

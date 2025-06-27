@@ -241,51 +241,6 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-20">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Nuestro Equipo
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Profesionales especializados en propiedad intelectual comprometidos con tu éxito
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <Users className="h-10 w-10 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{member.name}</CardTitle>
-                  <Badge variant="secondary" className="mx-auto">
-                    {member.role}
-                  </Badge>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-base">
-                    {member.description}
-                  </CardDescription>
-                  <div>
-                    <h4 className="font-semibold mb-2">Especialidades:</h4>
-                    <div className="flex flex-wrap gap-2 justify-center">
-                      {member.expertise.map((skill, skillIndex) => (
-                        <Badge key={skillIndex} variant="outline" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why Choose Us Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto">

@@ -82,7 +82,7 @@ export default function ContactoPage() {
 
     try {
       await emailjs.send(
-        'service_pl7cfsi',
+        'service_uhjbshf',
         'template_43jyjbw',
         {
           name: formData.name,

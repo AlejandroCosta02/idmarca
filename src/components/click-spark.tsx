@@ -108,14 +108,12 @@ const ClickSpark = ({
     }))
 
     sparksRef.current.push(...newSparks)
+    
+    // Start animation if not already running
+    if (!animationRef.current) {
+      animationRef.current = requestAnimationFrame(animate);
+    }
   }
-
-  useEffect(() => {
-    animationRef.current = requestAnimationFrame(animate);
-    return () => {
-      cancelAnimationFrame(animationRef.current!);
-    };
-  }, [animate]);
 
   return (
     <div className="relative w-full h-full" onClick={handleClick}>

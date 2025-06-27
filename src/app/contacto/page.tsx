@@ -82,8 +82,8 @@ export default function ContactoPage() {
 
     try {
       await emailjs.send(
-        'service_cvlah0f',
-        'template_waqg06t',
+        'service_pl7cfsi',
+        'template_43jyjbw',
         {
           name: formData.name,
           email: formData.email,
@@ -92,7 +92,7 @@ export default function ContactoPage() {
           service: formData.service,
           message: formData.message,
         },
-        '2R13nYSjY94jA3pOG'
+        '8BcOBBmrwvLQU_QLY'
       )
       
       setSubmitStatus("success")

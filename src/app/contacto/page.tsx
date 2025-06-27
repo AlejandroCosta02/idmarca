@@ -110,6 +110,7 @@ export default function ContactoPage() {
     } catch (error) {
       setSubmitStatus("error")
       setSubmitMessage("Hubo un error al enviar tu consulta. Por favor, inténtalo nuevamente.")
+      console.error(error)
     } finally {
       setIsSubmitting(false)
     }

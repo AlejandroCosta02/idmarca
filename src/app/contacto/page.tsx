@@ -15,7 +15,9 @@ import {
   MapPin, 
   Clock, 
   Send,
-  CheckCircle 
+  CheckCircle,
+  Loader2,
+  AlertCircle
 } from "lucide-react"
 import { useState } from "react"
 
@@ -23,7 +25,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    value: "info@idmarca.com",
+    value: "contacto@idmarca.com",
     description: "Envíanos un email"
   },
   {
@@ -51,6 +53,9 @@ const services = [
   "Búsqueda de Marcas",
   "Renovación de Marcas",
   "Oposición de Marcas",
+  "Transferencias de Titularidad",
+  "Presentación de Escritos",
+  "Declaración Jurada de Uso",
   "Asesoramiento Legal",
   "Otro"
 ]
@@ -64,12 +69,50 @@ export default function ContactoPage() {
     service: "",
     message: ""
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+  const [submitMessage, setSubmitMessage] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData)
-    alert("¡Gracias por tu consulta! Te contactaremos pronto.")
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+    setSubmitMessage("")
+
+    try {
+      // For now, we'll simulate email sending
+      // In production, you would integrate with EmailJS, SendGrid, or your backend API
+      await new Promise(resolve => setTimeout(resolve, 2000)) // Simulate API call
+      
+      // Simulate successful email sending
+      setSubmitStatus("success")
+      setSubmitMessage("¡Gracias por tu consulta! Te contactaremos en menos de 24 horas.")
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        service: "",
+        message: ""
+      })
+      
+      // Log the form data (in production, this would be sent to your email service)
+      console.log("Form submitted:", {
+        ...formData,
+        to: "contacto@idmarca.com",
+        subject: `Nueva consulta: ${formData.service}`,
+        timestamp: new Date().toISOString()
+      })
+      
+    } catch (error) {
+      setSubmitStatus("error")
+      setSubmitMessage("Hubo un error al enviar tu consulta. Por favor, inténtalo nuevamente.")
+      console.error("Form submission error:", error)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (field: string, value: string) => {
@@ -116,6 +159,21 @@ export default function ContactoPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
+                  {/* Success/Error Messages */}
+                  {submitStatus === "success" && (
+                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <p className="text-green-800">{submitMessage}</p>
+                    </div>
+                  )}
+                  
+                  {submitStatus === "error" && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-3">
+                      <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+                      <p className="text-red-800">{submitMessage}</p>
+                    </div>
+                  )}
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
@@ -127,6 +185,7 @@ export default function ContactoPage() {
                           value={formData.name}
                           onChange={(e) => handleChange("name", e.target.value)}
                           placeholder="Tu nombre completo"
+                          disabled={isSubmitting}
                         />
                       </div>
                       <div>
@@ -139,6 +198,7 @@ export default function ContactoPage() {
                           value={formData.email}
                           onChange={(e) => handleChange("email", e.target.value)}
                           placeholder="tu@email.com"
+                          disabled={isSubmitting}
                         />
                       </div>
                     </div>
@@ -152,6 +212,7 @@ export default function ContactoPage() {
                           value={formData.phone}
                           onChange={(e) => handleChange("phone", e.target.value)}
                           placeholder="+54 11 1234-5678"
+                          disabled={isSubmitting}
                         />
                       </div>
                       <div>
@@ -162,6 +223,7 @@ export default function ContactoPage() {
                           value={formData.company}
                           onChange={(e) => handleChange("company", e.target.value)}
                           placeholder="Nombre de tu empresa"
+                          disabled={isSubmitting}
                         />
                       </div>
                     </div>
@@ -174,6 +236,7 @@ export default function ContactoPage() {
                         value={formData.service}
                         onValueChange={(value) => handleChange("service", value)}
                         required
+                        disabled={isSubmitting}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Selecciona un servicio" />
@@ -198,12 +261,27 @@ export default function ContactoPage() {
                         onChange={(e) => handleChange("message", e.target.value)}
                         placeholder="Cuéntanos sobre tu marca y necesidades..."
                         rows={5}
+                        disabled={isSubmitting}
                       />
                     </div>
 
-                    <Button type="submit" className="w-full" size="lg">
-                      <Send className="mr-2 h-4 w-4" />
-                      Enviar Consulta
+                    <Button 
+                      type="submit" 
+                      className="w-full" 
+                      size="lg"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Enviando...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          Enviar Consulta
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>

@@ -28,8 +28,13 @@ const navigation = [
 
 export function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [mounted, setMounted] = React.useState(false)
   const pathname = usePathname()
-  const { theme } = useTheme()
+  const { theme, resolvedTheme } = useTheme()
+
+  React.useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -38,21 +43,25 @@ export function Navigation() {
     return pathname.startsWith(href)
   }
 
-  // Determine which logo to use based on theme
-  const logoSrc = theme === "dark" ? "/logos/logo-darkmode.svg" : "/logos/logo.svg"
+  // Determine which logo to use based on theme, with fallback
+  const logoSrc = mounted && (resolvedTheme === "dark" || theme === "dark") 
+    ? "/logos/logo-darkmode.svg" 
+    : "/logos/logo.svg"
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center">
         <div className="mr-8">
           <Link href="/" className="flex items-center space-x-2">
-            <Image 
-              src={logoSrc}
-              alt="IDmarca Logo" 
-              width={120} 
-              height={32} 
-              className="h-8 w-auto"
-            />
+            {mounted && (
+              <Image 
+                src={logoSrc}
+                alt="IDmarca Logo" 
+                width={120} 
+                height={32} 
+                className="h-8 w-auto"
+              />
+            )}
           </Link>
         </div>
         
@@ -104,13 +113,15 @@ export function Navigation() {
             <SheetContent side="right">
               <SheetHeader>
                 <SheetTitle>
-                  <Image 
-                    src={logoSrc}
-                    alt="IDmarca Logo" 
-                    width={100} 
-                    height={26} 
-                    className="h-6 w-auto"
-                  />
+                  {mounted && (
+                    <Image 
+                      src={logoSrc}
+                      alt="IDmarca Logo" 
+                      width={100} 
+                      height={26} 
+                      className="h-6 w-auto"
+                    />
+                  )}
                 </SheetTitle>
               </SheetHeader>
               <div className="mt-8 flex flex-col space-y-4">

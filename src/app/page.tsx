@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { ServiceCard } from "@/components/service-card"
+import { ClientCarousel } from "@/components/client-carousel"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,7 +16,8 @@ import {
   FileText, 
   Search,
   RefreshCw,
-  AlertTriangle
+  AlertTriangle,
+  Star
 } from "lucide-react"
 import TiltedCard from "@/components/tilted-card"
 import CountUp from "@/components/count-up"
@@ -92,6 +94,112 @@ const stats = [
   { number: "98%", label: "Tasa de Éxito" },
   { number: "24/7", label: "Soporte Disponible" },
   { number: "10+", label: "Años de Experiencia" }
+]
+
+// Sample client data - you can replace these with actual client logos
+const clientLogos = [
+  {
+    id: 1,
+    name: "Cliente 1",
+    logo: "/clients/marca-1.png",
+    website: "#"
+  },
+  {
+    id: 2,
+    name: "Cliente 2", 
+    logo: "/clients/marca-2.png",
+    website: "#"
+  },
+  {
+    id: 3,
+    name: "Cliente 3",
+    logo: "/clients/marca-3.png",
+    website: "#"
+  },
+  {
+    id: 4,
+    name: "Cliente 4",
+    logo: "/clients/marca-4.png",
+    website: "#"
+  },
+  {
+    id: 5,
+    name: "Cliente 5",
+    logo: "/clients/marca-5.png",
+    website: "#"
+  },
+  {
+    id: 6,
+    name: "Cliente 6",
+    logo: "/clients/marca-6.png",
+    website: "#"
+  },
+  {
+    id: 7,
+    name: "Cliente 7",
+    logo: "/clients/marca-7.png",
+    website: "#"
+  },
+  {
+    id: 8,
+    name: "Cliente 8",
+    logo: "/clients/marca-8.png",
+    website: "#"
+  },
+  {
+    id: 9,
+    name: "Cliente 9",
+    logo: "/clients/marca-9.jpeg",
+    website: "#"
+  },
+  {
+    id: 10,
+    name: "Cliente 10",
+    logo: "/clients/marca-10.png",
+    website: "#"
+  },
+  {
+    id: 11,
+    name: "Cliente 11",
+    logo: "/clients/marca-11.jpg.webp",
+    website: "#"
+  },
+  {
+    id: 12,
+    name: "Cliente 12",
+    logo: "/clients/marca-12.png",
+    website: "#"
+  },
+  {
+    id: 13,
+    name: "Cliente 13",
+    logo: "/clients/marca-13.webp",
+    website: "#"
+  },
+  {
+    id: 14,
+    name: "Cliente 14",
+    logo: "/clients/marca-14.jpg",
+    website: "#"
+  },
+  {
+    id: 15,
+    name: "Cliente 15",
+    logo: "/clients/marca-15.png",
+    website: "#"
+  },
+  {
+    id: 16,
+    name: "Cliente 16",
+    logo: "/clients/marca-16.png",
+    website: "#"
+  },
+  {
+    id: 17,
+    name: "Cliente 17",
+    logo: "/clients/marca-17.webp",
+    website: "#"
+  }
 ]
 
 export default function HomePage() {
@@ -212,6 +320,36 @@ export default function HomePage() {
               </TiltedCard>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Client Carousel Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center mb-4">
+              <Star className="h-8 w-8 text-primary mr-3" />
+              <h2 className="text-3xl lg:text-4xl font-bold">
+                Nuestros Clientes
+              </h2>
+              <Star className="h-8 w-8 text-primary ml-3" />
+            </div>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Empresas que confían en nosotros para proteger su identidad de marca. 
+              Más de 50 marcas registradas exitosamente con una tasa de satisfacción del 98%.
+            </p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto">
+            <ClientCarousel clients={clientLogos} />
+          </div>
+          
+          {/* <div className="text-center mt-12">
+            <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full">
+              <CheckCircle className="h-4 w-4" />
+              <span className="text-sm font-medium">98% de clientes satisfechos</span>
+            </div>
+          </div> */}
         </div>
       </section>
 

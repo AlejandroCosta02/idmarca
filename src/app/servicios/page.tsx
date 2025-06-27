@@ -14,49 +14,31 @@ import {
   CheckCircle, 
   Users, 
   Clock, 
-  Zap
+  Zap,
+  Pencil,
+  FileCheck
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import TiltedCard from "@/components/tilted-card"
 
+// Icon mapping for string icon names
+const iconMap: Record<string, any> = {
+  ArrowPathIcon: RefreshCw, // or another suitable icon
+  PencilSquareIcon: Pencil,
+  DocumentCheckIcon: FileCheck,
+}
+
 const services = [
-  {
-    title: "Registro de Marcas",
-    description: "Registro completo de marcas comerciales ante INPI",
-    features: [
-      "Búsqueda previa de disponibilidad",
-      "Preparación de documentación completa",
-      "Presentación ante INPI",
-      "Seguimiento del trámite",
-      "Respuesta a observaciones",
-      "Certificado de registro",
-      "Asesoramiento legal completo"
-    ],
-    price: "$45.000",
-    badge: "Principal",
-    href: "/contacto",
-    popular: true,
-    icon: FileText,
-    details: [
-      "Análisis de viabilidad de la marca",
-      "Búsqueda en bases de datos oficiales",
-      "Preparación de formularios y documentación",
-      "Presentación electrónica ante INPI",
-      "Seguimiento del estado del trámite",
-      "Gestión de observaciones y respuestas",
-      "Obtención del certificado de registro"
-    ]
-  },
   {
     title: "Búsqueda de Marcas",
     description: "Verificación de disponibilidad de marcas",
     features: [
-      "Búsqueda en base de datos INPI",
+      "Búsqueda en base de datos",
       "Análisis de conflictos",
       "Informe detallado",
       "Recomendaciones estratégicas"
     ],
-    price: "$15.000",
+    price: "$30.500 ARS",
     badge: "Básico",
     href: "/contacto",
     icon: Search,
@@ -69,6 +51,33 @@ const services = [
     ]
   },
   {
+    title: "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales",
+    description: "Registro completo de marcas comerciales con asesoramiento experto y seguimiento integral.",
+    features: [
+      "Búsqueda previa de disponibilidad",
+      "Preparación de documentación completa",
+      "Presentación de la documentación correspondiente",
+      "Seguimiento del trámite",
+      "Respuesta a observaciones",
+      "Certificado de registro",
+      "Asesoramiento legal completo"
+    ],
+    price: "$205.000 ARS",
+    badge: "Principal",
+    href: "/contacto",
+    popular: true,
+    icon: FileText,
+    details: [
+      "Análisis de viabilidad de la marca",
+      "Búsqueda en bases de datos oficiales",
+      "Preparación de formularios y documentación",
+      "Presentación electrónica",
+      "Seguimiento del estado del trámite",
+      "Gestión de observaciones y respuestas",
+      "Obtención del certificado de registro"
+    ]
+  },
+  {
     title: "Renovación de Marcas",
     description: "Renovación de registros existentes",
     features: [
@@ -77,7 +86,7 @@ const services = [
       "Pago de tasas",
       "Seguimiento del proceso"
     ],
-    price: "$25.000",
+    price: "$155.000 ARS",
     badge: "Mantenimiento",
     href: "/contacto",
     icon: RefreshCw,
@@ -98,7 +107,7 @@ const services = [
       "Presentación de argumentos",
       "Seguimiento del proceso"
     ],
-    price: "$35.000",
+    price: "$89.000 ARS",
     badge: "Defensa",
     href: "/contacto",
     icon: AlertTriangle,
@@ -109,7 +118,72 @@ const services = [
       "Representación en audiencias",
       "Seguimiento hasta resolución"
     ]
+  },
+  {
+    "title": "Transferencias de Titularidad",
+    "description": "Cambia la titularidad de tu marca de manera rápida y segura.",
+    "features": [
+      "Análisis de requisitos",
+      "Preparación de documentación",
+      "Presentación del trámite",
+      "Seguimiento hasta la aprobación"
+    ],
+    "price": "$150.500 ARS",
+    "badge": "Gestión",
+    "href": "/contacto",
+    "popular": false,
+    "icon": iconMap["ArrowPathIcon"],
+    "details": [
+      "Verificación de documentos legales",
+      "Preparación de contrato de cesión",
+      "Pago de tasas de transferencia",
+      "Confirmación de cambio de titularidad"
+    ]
+  },
+  {
+    "title": "Presentación de Escritos",
+    "description": "Presenta escritos legales relacionados con tu marca de manera profesional.",
+    "features": [
+      "Redacción de escritos",
+      "Revisión de requisitos legales",
+      "Presentación ante las autoridades",
+      "Seguimiento del trámite"
+    ],
+    "price": "$60.000 ARS",
+    "badge": "Escritos",
+    "href": "/contacto",
+    "popular": false,
+    "icon": iconMap["PencilSquareIcon"],
+    "details": [
+      "Análisis del caso",
+      "Preparación de argumentos legales",
+      "Pago de tasas correspondientes",
+      "Confirmación de recepción del escrito"
+    ]
+  },
+  {
+    "title": "Declaración Jurada de Uso de Medio Término",
+    "description": "Cumple con los requisitos legales presentando la declaración jurada de uso de tu marca.",
+    "features": [
+      "Preparación de la declaración",
+      "Revisión de requisitos legales",
+      "Presentación ante las autoridades correspondientes",
+      "Seguimiento del trámite"
+    ],
+    "price": "$89.000 ARS",
+    "badge": "Legal",
+    "href": "/contacto",
+    "popular": false,
+    "icon": iconMap["DocumentCheckIcon"],
+    "details": [
+      "Verificación de plazos legales",
+      "Preparación de documentación requerida",
+      "Pago de tasas correspondientes",
+      "Confirmación de presentación exitosa"
+    ]
   }
+  
+  
 ]
 
 const processSteps = [
@@ -134,7 +208,7 @@ const processSteps = [
   {
     step: "04",
     title: "Presentación",
-    description: "Presentamos tu solicitud ante INPI",
+    description: "Presentamos tu solicitud.",
     icon: Zap
   },
   {
@@ -184,14 +258,15 @@ export default function ServiciosPage() {
       {/* Services Grid */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Servicios Disponibles
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Selecciona el servicio que mejor se adapte a tus necesidades
-            </p>
-          </div>
+        <div className="text-center mb-16">
+  <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary">
+    Registra y gestiona tu marca fácil 🌟✨
+  </h2>
+  <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+    🚀 Rápido y <span className="text-primary font-semibold">100% online</span> 🌐
+  </p>
+</div>
+
           
           <div className="grid lg:grid-cols-2 gap-8">
             {services.map((service, index) => (

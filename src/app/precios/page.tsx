@@ -23,7 +23,7 @@ const pricingPlans = [
   {
     name: "Básico",
     description: "Para verificar la disponibilidad de tu marca",
-    price: "$15.000",
+    price: "$35.500 ARS",
     period: "por servicio",
     features: [
       "Búsqueda en base de datos INPI",
@@ -33,8 +33,7 @@ const pricingPlans = [
       "Soporte por email"
     ],
     notIncluded: [
-      "Preparación de documentación",
-      "Presentación ante INPI",
+      "Preparación y presentación de documentación",
       "Seguimiento del trámite",
       "Asesoramiento legal completo"
     ],
@@ -45,12 +44,12 @@ const pricingPlans = [
   {
     name: "Estándar",
     description: "Registro completo de marca comercial",
-    price: "$45.000",
+    price: "$205.000 ARS",
     period: "por servicio",
     features: [
       "Búsqueda previa de disponibilidad",
       "Preparación de documentación completa",
-      "Presentación ante INPI",
+      "Presentación de la documentación correspondiente",
       "Seguimiento del trámite",
       "Respuesta a observaciones",
       "Certificado de registro",
@@ -69,7 +68,7 @@ const pricingPlans = [
   {
     name: "Premium",
     description: "Servicio integral con monitoreo continuo",
-    price: "$75.000",
+    price: "$250.000 ARS",
     period: "por servicio",
     features: [
       "Todo lo del plan Estándar",
@@ -129,7 +128,7 @@ const faqs = [
   },
   {
     question: "¿Puedo pagar en cuotas?",
-    answer: "Sí, ofrecemos opciones de pago en cuotas sin interés para facilitar el acceso a nuestros servicios."
+    answer: "No, actualmente no ofrecemos pagos en cuotas, pero contamos con opciones de pago accesibles para todos nuestros clientes."
   },
   {
     question: "¿Qué pasa si mi marca es rechazada?",
@@ -250,7 +249,7 @@ export default function PreciosPage() {
       </section>
 
       {/* Additional Services */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -287,7 +286,7 @@ export default function PreciosPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* FAQ Section */}
       <section className="py-20 bg-muted/30">

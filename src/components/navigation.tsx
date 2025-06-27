@@ -50,21 +50,22 @@ export function Navigation() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <nav className="container mx-auto flex h-16 items-center">
-        <div className="mr-8">
+      <nav className="container mx-auto flex h-16 items-center justify-between">
+        {/* Logo (always left) */}
+        <div className="flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             {mounted && (
               <Image 
                 src={logoSrc}
                 alt="IDmarca Logo" 
-                width={120} 
-                height={32} 
-                className="h-8 w-auto"
+                width={180} 
+                height={48} 
+                className="h-12 w-auto"
               />
             )}
           </Link>
         </div>
-        
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex md:flex-1 md:items-center md:justify-between">
           <div className="flex space-x-6">
@@ -101,8 +102,9 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="flex md:hidden">
+        {/* Mobile Navigation (burger icon right) */}
+        <div className="flex md:hidden items-center">
+          <div className="flex-1" /> {/* Spacer to push burger icon right */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -117,9 +119,9 @@ export function Navigation() {
                     <Image 
                       src={logoSrc}
                       alt="IDmarca Logo" 
-                      width={100} 
-                      height={26} 
-                      className="h-6 w-auto"
+                      width={140} 
+                      height={36} 
+                      className="h-9 w-auto"
                     />
                   )}
                 </SheetTitle>

@@ -21,6 +21,7 @@ import {
 import TiltedCard from "@/components/tilted-card"
 import CountUp from "@/components/count-up"
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
+import FadeContent from "@/components/FadeContent"
 
 const services = [
   {
@@ -214,13 +215,17 @@ export default function HomePage() {
               <Badge variant="secondary" className="text-sm">
                 Especialistas en Propiedad Intelectual
               </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight font-hero-title">
-                IDmarca.{" "}
-                <span className="text-primary">Identidad protegida. Valor Asegurado</span>
-              </h1>
-              <p className="text-xl text-muted-foreground max-w-2xl">
-                Protege tu marca comercial con nuestro servicio de registro profesional. Te ofrecemos asesoramiento experto y un seguimiento completo para garantizar tu tranquilidad.
-              </p>
+              <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+                <h1 className="text-4xl lg:text-6xl font-bold leading-tight font-hero-title">
+                  IDmarca.{" "}
+                  <span className="text-primary">Identidad protegida. Valor Asegurado</span>
+                </h1>
+              </FadeContent>
+              <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+                <p className="text-xl text-muted-foreground max-w-2xl">
+                  Protege tu marca comercial con nuestro servicio de registro profesional. Te ofrecemos asesoramiento experto y un seguimiento completo para garantizar tu tranquilidad.
+                </p>
+              </FadeContent>
               <div className="flex flex-col sm:flex-row gap-4 items-stretch">
                 <Link href="/contacto" className="inline-block h-full">
                   <InteractiveHoverButton
@@ -293,13 +298,17 @@ export default function HomePage() {
       <section className="py-20">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              ¿Por qué elegir IDmarca?
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ofrecemos servicios integrales de registro de marcas con la experiencia 
-              y profesionalismo que tu negocio necesita.
-            </p>
+            <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                ¿Por qué elegir IDmarca?
+              </h2>
+            </FadeContent>
+            <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Ofrecemos servicios integrales de registro de marcas con la experiencia 
+                y profesionalismo que tu negocio necesita.
+              </p>
+            </FadeContent>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -326,17 +335,21 @@ export default function HomePage() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <div className="flex items-center justify-center mb-4">
-              <Star className="h-8 w-8 text-primary mr-3" />
-              <h2 className="text-3xl lg:text-4xl font-bold">
-                Nuestros Clientes
-              </h2>
-              <Star className="h-8 w-8 text-primary ml-3" />
-            </div>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Empresas que confían en nosotros para proteger su identidad de marca. 
-              Más de 50 marcas registradas exitosamente con una tasa de satisfacción del 98%.
-            </p>
+            <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+              <div className="flex items-center justify-center mb-4">
+                <Star className="h-8 w-8 text-primary mr-3" />
+                <h2 className="text-3xl lg:text-4xl font-bold">
+                  Nuestros Clientes
+                </h2>
+                <Star className="h-8 w-8 text-primary ml-3" />
+              </div>
+            </FadeContent>
+            <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Empresas que confían en nosotros para proteger su identidad de marca. 
+                Más de 50 marcas registradas exitosamente con una tasa de satisfacción del 98%.
+              </p>
+            </FadeContent>
           </div>
           
           <div className="max-w-6xl mx-auto">
@@ -356,13 +369,17 @@ export default function HomePage() {
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Nuestros Servicios
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Servicios completos de registro y gestión de marcas comerciales 
-              para proteger tu propiedad intelectual.
-            </p>
+            <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+                Nuestros Servicios
+              </h2>
+            </FadeContent>
+            <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Servicios completos de registro y gestión de marcas comerciales 
+                para proteger tu propiedad intelectual.
+              </p>
+            </FadeContent>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

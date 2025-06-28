@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import TiltedCard from "@/components/tilted-card"
+import AnimatedContent from "@/components/AnimatedContent"
 
 // Icon mapping for string icon names
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -268,9 +269,9 @@ export default function ServiciosPage() {
 </div>
 
           
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl mx-auto">
             {services.map((service, index) => (
-              <Card key={index} className="relative">
+              <Card key={index} className="relative w-full max-w-lg mx-auto p-2 sm:p-6 md:p-8 text-base sm:text-sm md:text-base">
                 {service.popular && (
                   <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
                     Más Popular
@@ -283,17 +284,29 @@ export default function ServiciosPage() {
                         <service.icon className="h-6 w-6 text-primary" />
                       </div>
                       <div>
-                        <CardTitle className="text-xl">{service.title}</CardTitle>
+                        <CardTitle className="text-lg sm:text-lg md:text-xl">{service.title}</CardTitle>
                         {service.badge && (
                           <Badge variant="secondary" className="mt-1">
                             {service.badge}
                           </Badge>
                         )}
+                        <div className="block sm:hidden mt-2">
+                          {service.price && (
+                            <div className="text-left">
+                              <div className="text-xl font-bold text-primary">
+                                {service.price}
+                              </div>
+                              <div className="text-xs text-muted-foreground">
+                                /servicio
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </div>
                     {service.price && (
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-primary">
+                      <div className="hidden sm:block text-right">
+                        <div className="text-2xl sm:text-xl md:text-2xl font-bold text-primary">
                           {service.price}
                         </div>
                         <div className="text-sm text-muted-foreground">
@@ -302,11 +315,11 @@ export default function ServiciosPage() {
                       </div>
                     )}
                   </div>
-                  <CardDescription className="text-base">
+                  <CardDescription className="text-sm sm:text-sm md:text-base mt-2 mb-2">
                     {service.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-4 sm:space-y-6">
                   <div>
                     <h4 className="font-semibold mb-3">Incluye:</h4>
                     <ul className="space-y-2">
@@ -334,7 +347,7 @@ export default function ServiciosPage() {
                   
                   <Button asChild className="w-full">
                     <Link href={service.href} className="inline-block w-full">
-                      Consultar {service.title}
+                      Consultar
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -345,7 +358,7 @@ export default function ServiciosPage() {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Process Steps Section */}
       <section className="py-20">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -356,25 +369,34 @@ export default function ServiciosPage() {
               Un proceso simple y transparente para registrar tu marca
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {processSteps.map((step, index) => (
-              <TiltedCard key={index} containerHeight="260px" className="bg-transparent">
-                <Card className="text-center bg-transparent border border-border shadow-lg h-full">
-                  <CardHeader>
-                    <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+              <AnimatedContent
+                key={index}
+                distance={130}
+                direction="horizontal"
+                reverse={false}
+                duration={1.1}
+                ease="bounce.out"
+                initialOpacity={0}
+                animateOpacity
+                scale={1}
+                threshold={0.1}
+                delay={0.1 * index}
+              >
+                <Card className="relative w-full max-w-xs mx-auto p-2 sm:p-6 md:p-8 text-base sm:text-sm md:text-base">
+                  <div className="absolute -right-4 top-1/2 -translate-y-1/2 bg-primary text-primary-foreground rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg z-10">
+                    {step.step}
+                  </div>
+                  <div className="flex flex-col items-center text-center space-y-4">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-2">
                       <step.icon className="h-8 w-8 text-primary" />
                     </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                      {step.step}
-                    </div>
-                    <CardTitle className="text-lg">{step.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription>{step.description}</CardDescription>
-                  </CardContent>
+                    <h3 className="text-lg sm:text-lg md:text-xl font-bold mb-1">{step.title}</h3>
+                    <p className="text-sm sm:text-sm md:text-base text-muted-foreground">{step.description}</p>
+                  </div>
                 </Card>
-              </TiltedCard>
+              </AnimatedContent>
             ))}
           </div>
         </div>

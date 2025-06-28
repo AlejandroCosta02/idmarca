@@ -19,7 +19,6 @@ import {
   FileCheck
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
-import TiltedCard from "@/components/tilted-card"
 import AnimatedContent from "@/components/AnimatedContent"
 
 // Icon mapping for string icon names

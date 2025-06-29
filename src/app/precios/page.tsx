@@ -14,6 +14,98 @@ import {
   X,
   Shield
 } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Precios de Registro de Marcas | Planes y Tarifas | IDmarca",
+  description: "Precios transparentes para registro de marcas en Argentina. Planes desde $35.500 ARS. Básico, Estándar y Premium. Sin costos ocultos, asesoramiento experto ante INPI.",
+  keywords: "precios registro marcas, tarifas INPI, planes registro marcas, costo registro marca Argentina, precios propiedad intelectual",
+  openGraph: {
+    title: "Precios de Registro de Marcas | Planes y Tarifas | IDmarca",
+    description: "Precios transparentes para registro de marcas en Argentina. Planes desde $35.500 ARS.",
+    url: "https://idmarca.com/precios",
+  },
+  alternates: {
+    canonical: "https://idmarca.com/precios",
+  },
+}
+
+// Structured Data for Pricing
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Planes de Registro de Marcas",
+  "description": "Precios y planes para registro de marcas comerciales en Argentina",
+  "url": "https://idmarca.com/precios",
+  "itemListElement": [
+    {
+      "@type": "Product",
+      "position": 1,
+      "name": "Plan Básico - Búsqueda de Marcas",
+      "description": "Para verificar la disponibilidad de tu marca",
+      "brand": {
+        "@type": "Brand",
+        "name": "IDmarca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "35500",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "35500",
+          "priceCurrency": "ARS",
+          "unitText": "por servicio"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "position": 2,
+      "name": "Plan Estándar - Registro Completo",
+      "description": "Registro completo de marca comercial",
+      "brand": {
+        "@type": "Brand",
+        "name": "IDmarca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "205000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "205000",
+          "priceCurrency": "ARS",
+          "unitText": "por servicio"
+        }
+      }
+    },
+    {
+      "@type": "Product",
+      "position": 3,
+      "name": "Plan Premium - Servicio Integral",
+      "description": "Servicio integral con monitoreo continuo",
+      "brand": {
+        "@type": "Brand",
+        "name": "IDmarca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "250000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "250000",
+          "priceCurrency": "ARS",
+          "unitText": "por servicio"
+        }
+      }
+    }
+  ]
+}
 
 const pricingPlans = [
   {
@@ -116,6 +208,12 @@ const faqs = [
 export default function PreciosPage() {
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <Navigation />
       
       {/* Hero Section */}

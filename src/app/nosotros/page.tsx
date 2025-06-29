@@ -17,6 +17,56 @@ import {
   Heart, 
   Star
 } from "lucide-react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Nosotros | IDmarca - Especialistas en Registro de Marcas",
+  description: "Conoce nuestro equipo de expertos en propiedad intelectual. Más de 10 años de experiencia en registro de marcas ante INPI. Más de 50 marcas registradas con 98% de éxito.",
+  keywords: "equipo IDmarca, expertos propiedad intelectual, experiencia registro marcas, INPI Argentina, profesionales marcas comerciales",
+  openGraph: {
+    title: "Nosotros | IDmarca - Especialistas en Registro de Marcas",
+    description: "Conoce nuestro equipo de expertos en propiedad intelectual. Más de 10 años de experiencia en registro de marcas.",
+    url: "https://idmarca.com/nosotros",
+  },
+  alternates: {
+    canonical: "https://idmarca.com/nosotros",
+  },
+}
+
+// Structured Data for About Us
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Sobre IDmarca",
+  "description": "Información sobre IDmarca, especialistas en registro de marcas comerciales en Argentina",
+  "url": "https://idmarca.com/nosotros",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "IDmarca",
+    "description": "Especialistas en registro de marcas comerciales y propiedad intelectual en Argentina",
+    "url": "https://idmarca.com",
+    "logo": "https://idmarca.com/logos/logo.svg",
+    "foundingDate": "2014", // Adjust to actual founding date
+    "numberOfEmployees": "10-50",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "serviceType": [
+      "Registro de Marcas",
+      "Búsqueda de Marcas",
+      "Renovación de Marcas",
+      "Oposición de Marcas",
+      "Transferencias de Titularidad",
+      "Declaración Jurada de Uso"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "50"
+    }
+  }
+}
 
 const values = [
   {
@@ -100,6 +150,12 @@ const timeline = [
 export default function NosotrosPage() {
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <Navigation />
       
       {/* Hero Section */}

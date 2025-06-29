@@ -20,6 +20,80 @@ import {
 } from "lucide-react"
 import { Separator } from "@/components/ui/separator"
 import AnimatedContent from "@/components/AnimatedContent"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Servicios de Registro de Marcas | INPI | IDmarca",
+  description: "Servicios completos de propiedad intelectual: registro de marcas, búsqueda, renovación, oposición y transferencias. Precios desde $30.500 ARS. Asesoramiento experto ante INPI.",
+  keywords: "servicios registro marcas, búsqueda marcas, renovación marcas, oposición marcas, transferencia titularidad, declaración jurada uso, INPI Argentina",
+  openGraph: {
+    title: "Servicios de Registro de Marcas | INPI | IDmarca",
+    description: "Servicios completos de propiedad intelectual: registro de marcas, búsqueda, renovación, oposición y transferencias.",
+    url: "https://idmarca.com/servicios",
+  },
+  alternates: {
+    canonical: "https://idmarca.com/servicios",
+  },
+}
+
+// Structured Data for Services
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Servicios de Propiedad Intelectual",
+  "description": "Servicios completos de registro de marcas y propiedad intelectual en Argentina",
+  "url": "https://idmarca.com/servicios",
+  "itemListElement": [
+    {
+      "@type": "Service",
+      "position": 1,
+      "name": "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales",
+      "description": "Registro completo de marcas comerciales con asesoramiento experto y seguimiento integral.",
+      "provider": {
+        "@type": "Organization",
+        "name": "IDmarca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "205000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Service",
+      "position": 2,
+      "name": "Búsqueda de Marcas",
+      "description": "Verificación de disponibilidad de marcas en base de datos INPI",
+      "provider": {
+        "@type": "Organization",
+        "name": "IDmarca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "30500",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Service",
+      "position": 3,
+      "name": "Renovación de Marcas",
+      "description": "Renovación de registros existentes con seguimiento completo",
+      "provider": {
+        "@type": "Organization",
+        "name": "IDmarca"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "155000",
+        "priceCurrency": "ARS",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
+}
 
 // Icon mapping for string icon names
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -228,6 +302,12 @@ const processSteps = [
 export default function ServiciosPage() {
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <Navigation />
       
       {/* Hero Section */}

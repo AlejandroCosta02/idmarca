@@ -22,6 +22,89 @@ import TiltedCard from "@/components/tilted-card"
 import CountUp from "@/components/count-up"
 import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button"
 import FadeContent from "@/components/FadeContent"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Registro de Marcas en Argentina | INPI | IDmarca",
+  description: "Registro profesional de marcas comerciales en Argentina. Servicios completos ante INPI: búsqueda, registro, renovación y defensa. Más de 50 marcas registradas con 98% de éxito.",
+  keywords: "registro de marcas Argentina, INPI, propiedad intelectual, marcas comerciales, búsqueda de marcas, renovación de marcas",
+  openGraph: {
+    title: "Registro de Marcas en Argentina | INPI | IDmarca",
+    description: "Registro profesional de marcas comerciales en Argentina. Servicios completos ante INPI: búsqueda, registro, renovación y defensa.",
+    url: "https://idmarca.com",
+  },
+  alternates: {
+    canonical: "https://idmarca.com",
+  },
+}
+
+// Structured Data for Local Business
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "IDmarca",
+  "description": "Registro profesional de marcas comerciales en Argentina. Servicios completos de propiedad intelectual ante INPI.",
+  "url": "https://idmarca.com",
+  "logo": "https://idmarca.com/logos/logo.svg",
+  "image": "https://idmarca.com/logos/logo.svg",
+  "telephone": "+54-11-1234-5678", // Add your actual phone number
+  "email": "info@idmarca.com", // Add your actual email
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "AR",
+    "addressLocality": "Buenos Aires",
+    "addressRegion": "Buenos Aires"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -34.6118,
+    "longitude": -58.3960
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Argentina"
+  },
+  "serviceType": [
+    "Registro de Marcas",
+    "Búsqueda de Marcas", 
+    "Renovación de Marcas",
+    "Oposición de Marcas",
+    "Transferencias de Titularidad",
+    "Declaración Jurada de Uso"
+  ],
+  "priceRange": "$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "50"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Propiedad Intelectual",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Registro de Marcas",
+          "description": "Registro completo de marcas comerciales ante INPI",
+          "price": "205000",
+          "priceCurrency": "ARS"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Búsqueda de Marcas",
+          "description": "Verificación de disponibilidad de marcas",
+          "price": "30500",
+          "priceCurrency": "ARS"
+        }
+      }
+    ]
+  }
+}
 
 const services = [
   {
@@ -205,6 +288,12 @@ const clientLogos = [
 export default function HomePage() {
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <Navigation />
       
       {/* Hero Section */}

@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     unoptimized: false,
   },
+  async redirects() {
+    return [
+      {
+        source: "/index.asp",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

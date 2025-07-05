@@ -1,16 +1,20 @@
 User-agent: *
 Allow: /
 
-# Disallow admin or private areas (if any)
+# Disallow sensitive or non-public areas
 Disallow: /admin/
 Disallow: /private/
 Disallow: /api/
 
-# Allow important pages
+# Explicitly allow main public pages
 Allow: /servicios
 Allow: /precios
 Allow: /nosotros
 Allow: /contacto
+Allow: /blog
+Allow: /privacidad
+Allow: /terminos
+Allow: /cookies
 
 # Sitemap location
 Sitemap: https://idmarca.com/sitemap.xml

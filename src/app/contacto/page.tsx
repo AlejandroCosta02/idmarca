@@ -11,6 +11,7 @@ import {
   Clock
 } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
+import { Suspense } from "react"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -119,7 +120,9 @@ export default function ContactoPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <ContactForm />
+              <Suspense fallback={<div>Loading...</div>}>
+                <ContactForm />
+              </Suspense>
             </div>
 
             {/* Contact Info */}

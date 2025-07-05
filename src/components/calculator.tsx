@@ -29,7 +29,7 @@ const step2Options = [
   "Expandirme a nuevas provincias",
   "Franquiciar mi producto",
   "Tener presencia digital fuerte",
-  "Lanzar una línea de productos propia"
+  "Proteccion legal"
 ]
 
 // Step 3 options

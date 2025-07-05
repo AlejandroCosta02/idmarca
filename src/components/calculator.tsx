@@ -182,7 +182,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto px-4 md:px-0">
       {!isCompleted ? (
         <Stepper
           currentStep={currentStep}
@@ -200,24 +200,24 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           onInvalidNext={(step) => setTriedNext((prev) => ({ ...prev, [step]: true }))}
         >
           <Step>
-            <div className="text-center space-y-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <CalculatorIcon className="h-8 w-8 text-primary" />
+            <div className="text-center space-y-4 md:space-y-6">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <CalculatorIcon className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold mb-2">¿Qué tipo de negocio tienes?</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold mb-2">¿Qué tipo de negocio tienes?</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Selecciona el tipo de actividad que mejor describe tu negocio para obtener un precio más preciso.
                 </p>
               </div>
               <div className="max-w-xs mx-auto">
                 <Select value={selectedBusiness} onValueChange={handleBusinessChange}>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="w-full bg-background text-foreground">
                     <SelectValue placeholder="Selecciona tu tipo de negocio" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-background border-border">
                     {(businessTypesData as { name: string; value: number }[]).map((business) => (
-                      <SelectItem key={business.name} value={business.name}>
+                      <SelectItem key={business.name} value={business.name} className="text-foreground">
                         {business.name}
                       </SelectItem>
                     ))}
@@ -228,13 +228,13 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           </Step>
 
           <Step>
-            <div className="text-center space-y-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle className="h-8 w-8 text-primary" />
+            <div className="text-center space-y-4 md:space-y-6">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold mb-2">¿Qué te gustaría lograr con tu marca en los próximos meses?</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold mb-2">¿Qué te gustaría lograr con tu marca en los próximos meses?</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Selecciona una o más opciones y/o escribe tu propio objetivo.
                 </p>
               </div>
@@ -259,13 +259,13 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           </Step>
 
           <Step>
-            <div className="text-center space-y-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <DollarSign className="h-8 w-8 text-primary" />
+            <div className="text-center space-y-4 md:space-y-6">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <DollarSign className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold mb-2">¿Actualmente estás usando el nombre o logo de tu marca en algún canal?</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold mb-2">¿Actualmente estás usando el nombre o logo de tu marca en algún canal?</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Selecciona todos los canales que correspondan.
                 </p>
               </div>
@@ -281,13 +281,13 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           </Step>
 
           <Step>
-            <div className="text-center space-y-6">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <Globe className="h-8 w-8 text-primary" />
+            <div className="text-center space-y-4 md:space-y-6">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <Globe className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold mb-2">¿Tenés un dominio web para tu marca o te gustaría registrarlo?</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold mb-2">¿Tenés un dominio web para tu marca o te gustaría registrarlo?</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Selecciona una opción.
                 </p>
               </div>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { Search, X, Check, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface MultiSelectProps {
   options: string[];
@@ -64,11 +64,6 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
     }
   }, [open, isMobile]);
 
-  // Filter options based on search term
-  const filteredOptions = options.filter(option =>
-    option.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   // Native select for mobile
   if (isMobile) {
     return (
@@ -101,10 +96,6 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
     } else {
       onChange([...selected, option]);
     }
-  };
-
-  const removeSelected = (option: string) => {
-    onChange(selected.filter((o) => o !== option));
   };
 
   // Desktop version: portal dropdown

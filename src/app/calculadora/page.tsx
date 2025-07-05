@@ -133,7 +133,7 @@ export default function CalculadoraPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 Protege tu marca comercial en Argentina
               </p>
-              <Badge variant="secondary">Desde $25 USD</Badge>
+              <Badge variant="secondary">Consultar</Badge>
             </Card>
             
             <Card className="text-center p-6">
@@ -144,7 +144,7 @@ export default function CalculadoraPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 Verifica la disponibilidad de tu marca
               </p>
-              <Badge variant="secondary">$25 USD</Badge>
+              <Badge variant="secondary">$90 USD</Badge>
             </Card>
             
             <Card className="text-center p-6">
@@ -155,7 +155,7 @@ export default function CalculadoraPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 Mantén tu marca vigente
               </p>
-              <Badge variant="secondary">$78 USD</Badge>
+              <Badge variant="secondary">$120 USD</Badge>
             </Card>
             
             <Card className="text-center p-6">
@@ -166,7 +166,7 @@ export default function CalculadoraPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 Defiende tus derechos de marca
               </p>
-              <Badge variant="secondary">$86 USD</Badge>
+              <Badge variant="secondary">$90 USD</Badge>
             </Card>
             
             <Card className="text-center p-6">
@@ -177,7 +177,7 @@ export default function CalculadoraPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 Cambia la titularidad de tu marca
               </p>
-              <Badge variant="secondary">$136 USD</Badge>
+              <Badge variant="secondary">$140 USD</Badge>
             </Card>
             
             <Card className="text-center p-6">

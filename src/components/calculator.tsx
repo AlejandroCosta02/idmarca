@@ -4,7 +4,22 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Calculator as CalculatorIcon, DollarSign, CheckCircle, ArrowRight, Globe, Loader2, AlertCircle } from "lucide-react"
+import { 
+  Building2, 
+  Target, 
+  Share2, 
+  Globe, 
+  DollarSign, 
+  CheckCircle, 
+  ArrowRight, 
+  Loader2, 
+  AlertCircle,
+  ChevronDown,
+  Search,
+  HelpCircle,
+  Phone,
+  Mail
+} from "lucide-react"
 import Stepper, { Step } from "./Stepper"
 import businessTypesData from "@/data/business-types.json"
 import { MultiSelect } from "@/components/ui/multiselect"
@@ -202,7 +217,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           <Step>
             <div className="text-center space-y-4 md:space-y-6">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <CalculatorIcon className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+                <Building2 className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl font-bold mb-2">¿Qué tipo de negocio tienes?</h2>
@@ -212,12 +227,12 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
               </div>
               <div className="max-w-xs mx-auto">
                 <Select value={selectedBusiness} onValueChange={handleBusinessChange}>
-                  <SelectTrigger className="w-full bg-background text-foreground px-4 py-3 text-base md:text-sm">
+                  <SelectTrigger className="w-full bg-background text-foreground px-4 py-3 text-base md:text-sm border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 hover:border-primary/50">
                     <SelectValue placeholder="Selecciona tu tipo de negocio" />
                   </SelectTrigger>
-                  <SelectContent className="bg-background border-border">
+                  <SelectContent className="bg-background border-border rounded-lg shadow-xl max-h-80">
                     {(businessTypesData as { name: string; value: number }[]).map((business) => (
-                      <SelectItem key={business.name} value={business.name} className="text-foreground text-base py-3 md:py-2">
+                      <SelectItem key={business.name} value={business.name} className="text-foreground text-base py-3 md:py-2 hover:bg-primary/5 focus:bg-primary/10">
                         {business.name}
                       </SelectItem>
                     ))}
@@ -230,7 +245,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           <Step>
             <div className="text-center space-y-4 md:space-y-6">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+                <Target className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl font-bold mb-2">¿Qué te gustaría lograr con tu marca en los próximos meses?</h2>
@@ -251,7 +266,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   onChange={handleCustomGoalChange}
                   maxLength={200}
                   placeholder="Otro objetivo (máx. 200 caracteres)"
-                  className="w-full border rounded px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full border rounded-lg px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 hover:border-primary/50 bg-background text-foreground"
                 />
                 <div className="text-xs text-muted-foreground text-right mt-1">{customGoal.length}/200</div>
               </div>
@@ -261,7 +276,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           <Step>
             <div className="text-center space-y-4 md:space-y-6">
               <div className="w-12 h-12 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <DollarSign className="h-6 w-6 md:h-8 md:w-8 text-primary" />
+                <Share2 className="h-6 w-6 md:h-8 md:w-8 text-primary" />
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl font-bold mb-2">¿Actualmente estás usando el nombre o logo de tu marca en algún canal?</h2>
@@ -291,18 +306,15 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   Selecciona una opción.
                 </p>
               </div>
-              <div className="max-w-xs mx-auto space-y-4">
+              <div className="max-w-xs mx-auto space-y-3">
                 {step4Options.map((option) => (
-                  <label key={option} className={`flex items-center gap-3 p-4 rounded border cursor-pointer transition-all text-base ${selectedDomain === option ? 'border-primary bg-primary/5 font-semibold' : 'border-border'}`}>
-                    <input
-                      type="radio"
-                      name="domain"
-                      value={option}
-                      checked={selectedDomain === option}
-                      onChange={() => setSelectedDomain(option)}
-                      className="form-radio h-5 w-5 md:h-4 md:w-4 text-primary border-primary focus:ring-primary"
-                    />
-                    <span className="text-left">{option}</span>
+                  <label key={option} className={`flex items-center gap-3 p-4 rounded-lg border cursor-pointer transition-all duration-200 text-base hover:border-primary/50 ${selectedDomain === option ? 'border-primary bg-primary/5 font-semibold shadow-sm' : 'border-border hover:bg-muted/50'}`}>
+                    <div className="flex items-center justify-center w-5 h-5 border-2 rounded-full border-primary/30 transition-colors duration-200">
+                      {selectedDomain === option && (
+                        <div className="w-2.5 h-2.5 bg-primary rounded-full" />
+                      )}
+                    </div>
+                    <span className="text-left flex-1">{option}</span>
                   </label>
                 ))}
               </div>
@@ -349,7 +361,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   required
                   placeholder="Nombre"
                   disabled={isSubmitting}
-                  className="w-full border rounded px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full border rounded-lg px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 hover:border-primary/50 bg-background text-foreground disabled:opacity-50"
                 />
                 <input
                   type="email"
@@ -358,7 +370,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   required
                   placeholder="Email"
                   disabled={isSubmitting}
-                  className="w-full border rounded px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full border rounded-lg px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 hover:border-primary/50 bg-background text-foreground disabled:opacity-50"
                 />
                 <Button 
                   type="submit" 
@@ -456,6 +468,55 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           </div>
         </div>
       )}
+
+      {/* Floating Help Button - Mobile Only */}
+      <div className="fixed bottom-6 right-6 md:hidden z-40">
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1, type: "spring", stiffness: 300 }}
+          className="flex flex-col gap-3"
+        >
+          {/* Help Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-14 h-14 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center"
+            onClick={() => {
+              // Scroll to top and show help info
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
+            <HelpCircle className="h-6 w-6" />
+          </motion.button>
+
+          {/* Contact Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5 }}
+            className="flex flex-col gap-2"
+          >
+            <motion.a
+              href="tel:+5491112345678"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-12 h-12 bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center"
+            >
+              <Phone className="h-5 w-5" />
+            </motion.a>
+            
+            <motion.a
+              href="mailto:info@idmarca.com"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center"
+            >
+              <Mail className="h-5 w-5" />
+            </motion.a>
+          </motion.div>
+        </motion.div>
+      </div>
     </div>
   )
 } 

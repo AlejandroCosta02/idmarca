@@ -17,8 +17,7 @@ import {
   RefreshCw,
   Star,
   AlertTriangle,
-  Pencil,
-  ChevronRight
+  Pencil
 } from "lucide-react"
 import TiltedCard from "@/components/tilted-card"
 import CountUp from "@/components/count-up"

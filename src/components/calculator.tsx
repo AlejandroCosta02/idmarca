@@ -93,7 +93,7 @@ export function Calculator() {
   // Mark step as touched when user interacts
   useEffect(() => {
     setTriedNext((prev) => ({ ...prev, [currentStep]: false }))
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep])
 
   // Validation logic for each step
@@ -112,26 +112,7 @@ export function Calculator() {
     4: "Selecciona una opción para continuar."
   }
 
-  const calculatePrice = () => {
-    let basePrice = 0
-    
-    // Get base price from selected business
-    const business = businessTypesData.find(b => b.name === selectedBusiness)
-    if (business) {
-      basePrice = business.value
-    }
-
-    // Add additional services
-    let additionalCost = 0
-    selectedServices.forEach(serviceName => {
-      const service = additionalServices.find(s => s.name === serviceName)
-      if (service) {
-        additionalCost += service.price
-      }
-    })
-
-    return basePrice + additionalCost
-  }
+  // calculatePrice function removed as it's not used
 
   const handleBusinessChange = (value: string) => {
     setSelectedBusiness(value)
@@ -140,13 +121,7 @@ export function Calculator() {
   }
 
   // Step 2 handlers
-  const handleGoalToggle = (goal: string) => {
-    setSelectedGoals(prev =>
-      prev.includes(goal)
-        ? prev.filter(g => g !== goal)
-        : [...prev, goal]
-    )
-  }
+  // handleGoalToggle function removed as it's not used
   const handleCustomGoalChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length <= 200) setCustomGoal(e.target.value)
   }

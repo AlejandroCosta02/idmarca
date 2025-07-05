@@ -3,8 +3,18 @@ import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Card } from "@/components/ui/card"
 import Link from "next/link"
-import { Calculator as CalculatorIcon, ArrowRight } from "lucide-react"
+import { 
+  Calculator as CalculatorIcon, 
+  ArrowRight,
+  FileText,
+  Search,
+  RefreshCw,
+  AlertTriangle,
+  Shield,
+  Pencil
+} from "lucide-react"
 import type { Metadata } from "next"
 import { Calculator } from "@/components/calculator"
 

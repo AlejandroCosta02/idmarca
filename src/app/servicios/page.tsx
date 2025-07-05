@@ -23,7 +23,6 @@ import {
   ChevronRight,
   Star
 } from "lucide-react"
-import { Separator } from "@/components/ui/separator"
 import AnimatedContent from "@/components/AnimatedContent"
 import type { Metadata } from "next"
 

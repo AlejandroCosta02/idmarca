@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
-import { ServiceCard } from "@/components/service-card"
 import { ClientCarousel } from "@/components/client-carousel"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -19,9 +18,6 @@ import {
   Star,
   AlertTriangle,
   Pencil,
-  FileCheck,
-  Globe,
-  Calculator,
   ChevronRight
 } from "lucide-react"
 import TiltedCard from "@/components/tilted-card"

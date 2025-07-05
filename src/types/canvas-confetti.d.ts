@@ -1,4 +1,3 @@
 declare module 'canvas-confetti' {
-  const confetti: any;
-  export default confetti;
+  export default function confetti(options?: unknown): void;
 } 

@@ -35,7 +35,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
       const menuHeight = 320; // px, matches max-h-72
       const spaceBelow = window.innerHeight - rect.bottom;
       const spaceAbove = rect.top;
-      let style: React.CSSProperties = {
+      const style: React.CSSProperties = {
         position: "absolute",
         left: rect.left + window.scrollX,
         width: rect.width,

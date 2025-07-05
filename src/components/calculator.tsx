@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
 import { Calculator as CalculatorIcon, DollarSign, CheckCircle, ArrowRight, Globe, Loader2, AlertCircle } from "lucide-react"
 import Stepper, { Step } from "./Stepper"
 import businessTypesData from "@/data/business-types.json"
@@ -71,7 +70,6 @@ export function Calculator() {
   const [showModal, setShowModal] = useState(false)
   const [currentStep, setCurrentStep] = useState(1)
   const confettiFired = useRef(false)
-  const [touchedSteps, setTouchedSteps] = useState<{ [step: number]: boolean }>({})
   const [triedNext, setTriedNext] = useState<{ [step: number]: boolean }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
@@ -94,7 +92,6 @@ export function Calculator() {
 
   // Mark step as touched when user interacts
   useEffect(() => {
-    setTouchedSteps((prev) => ({ ...prev, [currentStep]: true }))
     setTriedNext((prev) => ({ ...prev, [currentStep]: false }))
     // eslint-disable-next-line
   }, [currentStep])
@@ -136,28 +133,10 @@ export function Calculator() {
     return basePrice + additionalCost
   }
 
-  const handleStepChange = (step: number) => {
-    console.log(`Step changed to: ${step}`)
-  }
-
-  const handleFinalStepCompleted = () => {
-    const finalPrice = calculatePrice()
-    setTotalPrice(finalPrice)
-    setIsCompleted(true)
-  }
-
   const handleBusinessChange = (value: string) => {
     setSelectedBusiness(value)
     const found = (businessTypesData as { name: string; value: number }[]).find(b => b.name === value)
     setSelectedBusinessValue(found ? found.value : null)
-  }
-
-  const handleServiceToggle = (serviceName: string) => {
-    setSelectedServices(prev => 
-      prev.includes(serviceName) 
-        ? prev.filter(s => s !== serviceName)
-        : [...prev, serviceName]
-    )
   }
 
   // Step 2 handlers

@@ -2,22 +2,9 @@ import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { CTASection } from "@/components/cta-section"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { 
-  Calculator as CalculatorIcon,
-  ArrowRight,
-  DollarSign,
-  FileText,
-  Search,
-  RefreshCw,
-  AlertTriangle,
-  Shield,
-  Pencil,
-  FileCheck,
-  Globe
-} from "lucide-react"
+import { Calculator as CalculatorIcon, ArrowRight } from "lucide-react"
 import type { Metadata } from "next"
 import { Calculator } from "@/components/calculator"
 

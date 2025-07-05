@@ -11,7 +11,6 @@ interface MultiSelectProps {
 
 export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onChange, placeholder }) => {
   const [open, setOpen] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const buttonRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -30,7 +29,6 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
         !menuRef.current.contains(event.target as Node)
       ) {
         setOpen(false);
-        setSearchTerm("");
       }
     }
     document.addEventListener("mousedown", handleClickOutside);

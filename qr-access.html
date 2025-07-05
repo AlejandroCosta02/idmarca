@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDmarca - Acceso Móvil</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .qr-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+        .qr-code {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .url {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        .instructions {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .step {
+            margin: 10px 0;
+            padding: 5px 0;
+        }
+        .highlight {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Acceso Móvil IDmarca</h1>
+        
+        <div class="qr-section">
+            <h2>🏠 Página Principal</h2>
+            <div class="qr-code">
+                <!-- QR Code for main page -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://192.168.0.205:3001" alt="QR Code - Main Page">
+            </div>
+            <div class="url">http://192.168.0.205:3001</div>
+        </div>
+
+        <div class="qr-section">
+            <h2>🧮 Calculadora</h2>
+            <div class="qr-code">
+                <!-- QR Code for calculator -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://192.168.0.205:3001/calculadora" alt="QR Code - Calculator">
+            </div>
+            <div class="url">http://192.168.0.205:3001/calculadora</div>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 Instrucciones:</h3>
+            <div class="step">1. <span class="highlight">Abre la cámara</span> de tu iPhone</div>
+            <div class="step">2. <span class="highlight">Apunta al código QR</span> que quieras usar</div>
+            <div class="step">3. <span class="highlight">Toca la notificación</span> que aparece</div>
+            <div class="step">4. <span class="highlight">Se abrirá Safari</span> con la página</div>
+            
+            <h3>⚠️ Importante:</h3>
+            <div class="step">• Tu iPhone debe estar en la <span class="highlight">misma red WiFi</span> que tu Mac</div>
+            <div class="step">• El servidor debe estar <span class="highlight">ejecutándose</span> en tu Mac</div>
+            <div class="step">• Si no funciona, verifica que la IP sea correcta</div>
+        </div>
+
+        <div class="qr-section">
+            <h2>🔧 URLs Manuales</h2>
+            <p>Si los códigos QR no funcionan, copia y pega estas URLs en Safari:</p>
+            <div class="url">Página Principal: http://192.168.0.205:3001</div>
+            <div class="url">Calculadora: http://192.168.0.205:3001/calculadora</div>
+            <div class="url">Servicios: http://192.168.0.205:3001/servicios</div>
+            <div class="url">Precios: http://192.168.0.205:3001/precios</div>
+        </div>
+    </div>
+</body>
+</html> 

@@ -17,10 +17,39 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
   const searchRef = useRef<HTMLInputElement>(null);
   const [menuStyle, setMenuStyle] = useState<React.CSSProperties>({});
 
+  // Detect mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
   // Filter options based on search term
   const filteredOptions = options.filter(option =>
     option.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  // Native select for mobile
+  if (isMobile) {
+    return (
+      <div className="relative">
+        <select
+          multiple
+          className="w-full border rounded-lg px-4 py-3 text-base text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary appearance-none min-h-[48px] text-lg"
+          value={selected}
+          onChange={e => {
+            const values = Array.from(e.target.selectedOptions).map(opt => opt.value);
+            onChange(values);
+          }}
+        >
+          {selected.length === 0 && (
+            <option value="" disabled hidden>{placeholder || "Selecciona"}</option>
+          )}
+          {options.map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
+    );
+  }
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -34,54 +63,52 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
         setSearchTerm("");
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
-    if (open && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const menuHeight = 400; // Increased height for search
-      const spaceBelow = window.innerHeight - rect.bottom;
-      const spaceAbove = rect.top;
-      const isMobile = window.innerWidth < 768;
-      
-      const style: React.CSSProperties = {
-        position: "absolute",
-        width: rect.width,
-        zIndex: 9999
-      };
-      
-      if (isMobile) {
-        // Mobile: full width, positioned from top with better spacing
-        style.left = 0;
-        style.right = 0;
-        style.top = rect.bottom + window.scrollY + 8;
-        style.maxHeight = Math.min(menuHeight, window.innerHeight - rect.bottom - 40);
-        style.width = "100vw";
-        style.marginLeft = "-1rem";
-        style.marginRight = "-1rem";
-        style.borderRadius = "12px";
-        style.boxShadow = "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)";
-      } else {
-        // Desktop: positioned relative to button
-        style.left = rect.left + window.scrollX;
-        if (spaceBelow >= menuHeight || spaceBelow >= spaceAbove) {
-          // Open down
-          style.top = rect.bottom + window.scrollY + 4;
-          style.maxHeight = menuHeight;
+    
+    function handleResize() {
+      if (open && buttonRef.current) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        const isMobile = window.innerWidth < 768;
+        
+        // Calculate available space
+        const spaceBelow = window.innerHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        const menuHeight = isMobile ? 250 : 300;
+        
+        // Determine if we should open up or down
+        const shouldOpenUp = spaceBelow < menuHeight && spaceAbove > spaceBelow;
+        
+        const style: React.CSSProperties = {
+          position: "absolute",
+          zIndex: 9999,
+          width: "100%",
+          maxHeight: `${Math.min(menuHeight, shouldOpenUp ? spaceAbove - 20 : spaceBelow - 20)}px`,
+          borderRadius: "8px",
+          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+        };
+        
+        if (shouldOpenUp) {
+          style.bottom = "100%";
+          style.marginBottom = "4px";
         } else {
-          // Open up
-          style.bottom = window.innerHeight - rect.top + window.scrollY + 4;
-          style.maxHeight = Math.min(menuHeight, spaceAbove - 16);
+          style.top = "100%";
+          style.marginTop = "4px";
         }
+        
+        setMenuStyle(style);
       }
-      setMenuStyle(style);
     }
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", handleResize);
+    };
   }, [open]);
 
   useEffect(() => {
-    if (open && searchRef.current) {
+    if (open && searchRef.current && window.innerWidth >= 768) {
       searchRef.current.focus();
     }
   }, [open]);
@@ -117,16 +144,15 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
                     className="inline-flex items-center gap-1 bg-primary/10 text-primary px-2 py-1 rounded-md text-sm font-medium"
                   >
                     <span className="truncate max-w-20">{s}</span>
-                    <button
-                      type="button"
+                    <span
                       onClick={(e) => {
                         e.stopPropagation();
                         removeSelected(s);
                       }}
-                      className="hover:bg-primary/20 rounded-full p-0.5"
+                      className="hover:bg-primary/20 rounded-full p-0.5 cursor-pointer"
                     >
                       <X className="h-3 w-3" />
-                    </button>
+                    </span>
                   </span>
                 ))}
                 {selected.length > 2 && (
@@ -141,73 +167,76 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
         </div>
       </button>
       
-      {open && typeof window !== "undefined" && createPortal(
+      {open && (
         <div 
           ref={menuRef} 
-          style={menuStyle} 
-          className="bg-background border border-border rounded-lg shadow-xl max-h-96 overflow-hidden z-50"
+          className="absolute bg-background border border-border rounded-lg shadow-lg z-50 overflow-hidden"
+          style={menuStyle}
         >
-          {/* Search Input */}
-          <div className="sticky top-0 bg-background border-b border-border p-3">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input
-                ref={searchRef}
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Buscar opciones..."
-                className="w-full pl-10 pr-4 py-2 text-sm border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-              />
+          {/* Search Input - Desktop Only */}
+          {window.innerWidth >= 768 && (
+            <div className="sticky top-0 bg-background border-b border-border p-3">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <input
+                  ref={searchRef}
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Buscar opciones..."
+                  className="w-full pl-10 pr-4 py-2 text-sm border border-border rounded-md bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                />
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Options List */}
-          <div className="max-h-80 overflow-y-auto">
-            {filteredOptions.length === 0 ? (
+          <div className="overflow-y-auto" style={{ maxHeight: window.innerWidth < 768 ? '200px' : '240px' }}>
+            {(window.innerWidth >= 768 ? filteredOptions : options).length === 0 ? (
               <div className="p-4 text-center text-muted-foreground text-sm">
                 No se encontraron opciones
               </div>
             ) : (
-              filteredOptions.map((option) => (
-                <label
+              (window.innerWidth >= 768 ? filteredOptions : options).map((option) => (
+                <button
                   key={option}
-                  className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-primary/5 transition-colors duration-150 text-base border-b border-border/50 last:border-b-0 ${
+                  type="button"
+                  onClick={() => toggleOption(option)}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-left hover:bg-primary/5 transition-colors duration-150 text-sm border-b border-border/50 last:border-b-0 ${
                     selected.includes(option) 
                       ? 'bg-primary/10 font-medium text-primary' 
                       : 'text-foreground'
                   }`}
                 >
-                  <div className="flex items-center justify-center w-5 h-5 border-2 rounded border-primary/30 transition-colors duration-150">
+                  <div className="flex items-center justify-center w-4 h-4 border-2 rounded border-primary/30 transition-colors duration-150">
                     {selected.includes(option) && (
-                      <Check className="h-3 w-3 text-primary" />
+                      <Check className="h-2.5 w-2.5 text-primary" />
                     )}
                   </div>
                   <span className="flex-1">{option}</span>
-                </label>
+                </button>
               ))
             )}
           </div>
 
           {/* Selected Items Summary (Mobile) */}
           {selected.length > 0 && window.innerWidth < 768 && (
-            <div className="sticky bottom-0 bg-background border-t border-border p-3">
+            <div className="sticky bottom-0 bg-background border-t border-border p-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">
+                <span className="text-xs text-muted-foreground">
                   {selected.length} seleccionado{selected.length !== 1 ? 's' : ''}
                 </span>
                 <button
                   type="button"
                   onClick={() => onChange([])}
-                  className="text-sm text-primary hover:text-primary/80 font-medium"
+                  className="text-xs text-primary hover:text-primary/80 font-medium"
                 >
                   Limpiar
                 </button>
               </div>
             </div>
           )}
-        </div>,
-        document.body
+        </div>
       )}
     </div>
   );

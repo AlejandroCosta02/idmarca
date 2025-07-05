@@ -15,10 +15,7 @@ import {
   Loader2, 
   AlertCircle,
   ChevronDown,
-  Search,
-  HelpCircle,
-  Phone,
-  Mail
+  Search
 } from "lucide-react"
 import Stepper, { Step } from "./Stepper"
 import businessTypesData from "@/data/business-types.json"
@@ -26,6 +23,7 @@ import { MultiSelect } from "@/components/ui/multiselect"
 import { motion, AnimatePresence } from "framer-motion"
 import confetti from "canvas-confetti"
 import emailjs from '@emailjs/browser'
+import SuccessModal from "@/components/SuccessModal"
 
 // Additional services removed as they're not used
 
@@ -307,16 +305,37 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                 </p>
               </div>
               <div className="max-w-xs mx-auto space-y-3">
-                {step4Options.map((option) => (
-                  <label key={option} className={`flex items-center gap-3 p-4 rounded-lg border cursor-pointer transition-all duration-200 text-base hover:border-primary/50 ${selectedDomain === option ? 'border-primary bg-primary/5 font-semibold shadow-sm' : 'border-border hover:bg-muted/50'}`}>
-                    <div className="flex items-center justify-center w-5 h-5 border-2 rounded-full border-primary/30 transition-colors duration-200">
-                      {selectedDomain === option && (
-                        <div className="w-2.5 h-2.5 bg-primary rounded-full" />
-                      )}
-                    </div>
-                    <span className="text-left flex-1">{option}</span>
-                  </label>
-                ))}
+                {typeof window !== 'undefined' && window.innerWidth < 768 ? (
+                  <select
+                    className="w-full border rounded-lg px-4 py-3 text-base text-foreground bg-background focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                    value={selectedDomain}
+                    onChange={e => setSelectedDomain(e.target.value)}
+                  >
+                    <option value="" disabled>Selecciona una opción</option>
+                    {step4Options.map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                ) : (
+                  step4Options.map((option) => (
+                    <label key={option} className={`flex items-center gap-3 p-4 rounded-lg border cursor-pointer transition-all duration-200 text-base hover:border-primary/50 ${selectedDomain === option ? 'border-primary bg-primary/5 font-semibold shadow-sm' : 'border-border hover:bg-muted/50'}`}>
+                      <div className="flex items-center justify-center w-5 h-5 border-2 rounded-full border-primary/30 transition-colors duration-200">
+                        {selectedDomain === option && (
+                          <div className="w-2.5 h-2.5 bg-primary rounded-full" />
+                        )}
+                      </div>
+                      <span className="text-left flex-1">{option}</span>
+                      <input
+                        type="radio"
+                        name="domain"
+                        value={option}
+                        checked={selectedDomain === option}
+                        onChange={() => setSelectedDomain(option)}
+                        className="hidden"
+                      />
+                    </label>
+                  ))
+                )}
               </div>
             </div>
           </Step>
@@ -392,31 +411,6 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                 )}
               </form>
             </div>
-            {showModal && (
-              <AnimatePresence>
-                <motion.div
-                  className="fixed inset-0 bg-black/30 backdrop-blur-sm z-50 flex items-center justify-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <motion.div
-                    className="bg-white rounded-xl shadow-lg p-8 max-w-sm w-full text-center"
-                    initial={{ scale: 0.7, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.7, opacity: 0 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle className="h-8 w-8 text-green-600" />
-                    </div>
-                    <h2 className="text-2xl font-bold mb-2">¡Felicitaciones!</h2>
-                    <p className="text-muted-foreground mb-4">{submitMessage}</p>
-                    <Button onClick={() => setShowModal(false)} className="w-full mt-2">Cerrar</Button>
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>
-            )}
           </Step>
         </Stepper>
       ) : (
@@ -468,55 +462,13 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
           </div>
         </div>
       )}
-
-      {/* Floating Help Button - Mobile Only */}
-      <div className="fixed bottom-6 right-6 md:hidden z-40">
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 1, type: "spring", stiffness: 300 }}
-          className="flex flex-col gap-3"
-        >
-          {/* Help Button */}
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-14 h-14 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center"
-            onClick={() => {
-              // Scroll to top and show help info
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-          >
-            <HelpCircle className="h-6 w-6" />
-          </motion.button>
-
-          {/* Contact Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
-            className="flex flex-col gap-2"
-          >
-            <motion.a
-              href="tel:+5491112345678"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 bg-green-600 text-white rounded-full shadow-lg flex items-center justify-center"
-            >
-              <Phone className="h-5 w-5" />
-            </motion.a>
-            
-            <motion.a
-              href="mailto:info@idmarca.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center"
-            >
-              <Mail className="h-5 w-5" />
-            </motion.a>
-          </motion.div>
-        </motion.div>
-      </div>
+      {showModal && (
+        <SuccessModal
+          open={showModal}
+          message={submitMessage}
+          onClose={() => setShowModal(false)}
+        />
+      )}
     </div>
   )
 } 

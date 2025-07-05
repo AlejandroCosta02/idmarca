@@ -23,9 +23,6 @@ interface AnimatedContentProps {
 
 const AnimatedContent = ({
   children,
-  distance = 100,
-  direction = "vertical",
-  reverse = false,
   duration = 0.8,
   ease = "power3.out",
   initialOpacity = 0,
@@ -41,20 +38,16 @@ const AnimatedContent = ({
     const el = ref.current;
     if (!el) return;
 
-    const axis = direction === "horizontal" ? "x" : "y";
-    const offset = reverse ? -distance : distance;
     const startPct = (1 - threshold) * 100;
 
     gsap.set(el, {
-      [axis]: offset,
-      scale,
       opacity: animateOpacity ? initialOpacity : 1,
+      scale,
     });
 
     gsap.to(el, {
-      [axis]: 0,
-      scale: 1,
       opacity: 1,
+      scale: 1,
       duration,
       ease,
       delay,
@@ -72,9 +65,6 @@ const AnimatedContent = ({
       gsap.killTweensOf(el);
     };
   }, [
-    distance,
-    direction,
-    reverse,
     duration,
     ease,
     initialOpacity,

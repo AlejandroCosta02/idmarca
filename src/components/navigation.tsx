@@ -107,8 +107,8 @@ export function Navigation() {
           <div className="flex-1" /> {/* Spacer to push burger icon right */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="md:hidden p-0 w-14 h-14 flex items-center justify-center">
+                <Menu className="h-12 w-12" />
                 <span className="sr-only">Abrir menú</span>
               </Button>
             </SheetTrigger>
@@ -121,19 +121,19 @@ export function Navigation() {
                       alt="IDmarca Logo" 
                       width={140} 
                       height={36} 
-                      className="h-9 w-auto"
+                      className="h-9 w-auto mx-auto"
                     />
                   )}
                 </SheetTitle>
               </SheetHeader>
-              <div className="mt-8 flex flex-col space-y-4">
+              <div className="mt-8 flex flex-col items-center justify-center space-y-6 min-h-[60vh]">
                 {navigation.map((item) => {
                   const active = isActive(item.href)
                   return (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`relative text-lg font-medium transition-all duration-300 ease-in-out ${
+                      className={`relative text-2xl font-semibold transition-all duration-300 ease-in-out text-center w-full py-2 ${
                         active 
                           ? "text-primary" 
                           : "text-muted-foreground hover:text-primary"
@@ -143,12 +143,12 @@ export function Navigation() {
                       {item.name}
                       {/* Active indicator for mobile */}
                       {active && (
-                        <div className="absolute -left-4 top-1/2 w-1 h-6 bg-primary rounded-full -translate-y-1/2 animate-in slide-in-from-left-1 duration-300" />
+                        <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-8 h-1 bg-primary rounded-full animate-in slide-in-from-bottom-1 duration-300" />
                       )}
                     </Link>
                   )
                 })}
-                <div className="flex items-center justify-between pt-4">
+                <div className="flex items-center justify-center pt-6 space-x-4">
                   <ThemeToggle />
                   <Link href="/contacto" className="inline-block">
                     <InteractiveHoverButton>

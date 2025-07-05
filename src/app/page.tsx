@@ -496,48 +496,48 @@ export default function HomePage() {
               </p>
             </FadeContent>
           </div>
-          <div className="max-w-4xl mx-auto divide-y divide-border/50 bg-background/80 rounded-xl shadow-sm">
+          <div className="max-w-4xl mx-auto divide-y divide-border/50 bg-background/80 rounded-xl shadow-sm overflow-hidden">
             {updatedServices.map((service, index) => (
               <div
                 key={index}
-                className="group flex flex-col md:flex-row items-start md:items-center justify-between px-6 py-6 transition-all duration-200 hover:bg-primary/10"
+                className="group flex flex-col md:flex-row items-start md:items-center justify-between px-4 md:px-6 py-6 transition-all duration-200 hover:bg-primary/10"
               >
                 {/* Left: Icon, Title, Description */}
-                <div className="flex items-start space-x-4 flex-1 min-w-0">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                    <service.icon className="h-6 w-6 text-primary" />
+                <div className="flex items-start space-x-3 md:space-x-4 flex-1 min-w-0">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <service.icon className="h-5 w-5 md:h-6 md:w-6 text-primary" />
                   </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center space-x-2 mb-1">
-                      <span className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 mb-1">
+                      <span className="font-semibold text-base md:text-lg leading-tight group-hover:text-primary transition-colors break-words">
                         {service.title}
                       </span>
                       {service.badge && (
-                        <Badge variant="secondary" className="text-xs">{service.badge}</Badge>
+                        <Badge variant="secondary" className="text-xs w-fit">{service.badge}</Badge>
                       )}
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed truncate md:whitespace-normal max-w-md">
+                    <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
                   </div>
                 </div>
                 {/* Right: Price, Action */}
-                <div className="flex flex-col md:items-end items-start mt-4 md:mt-0 min-w-[160px]">
-                  <div className="flex items-center space-x-1 mb-2 md:mb-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end items-start mt-4 md:mt-0 space-y-2 sm:space-y-0 sm:space-x-3 min-w-0 sm:min-w-[140px]">
+                  <div className="flex items-center space-x-1">
                     {service.price !== "Consultar" && service.price !== "Calcular" && service.price !== "Registrar" && service.price !== "Agregar" ? (
                       <>
-                        <span className="font-semibold text-primary text-lg">$</span>
-                        <span className="font-semibold text-primary text-lg">{service.price}</span>
+                        <span className="font-semibold text-primary text-base md:text-lg">$</span>
+                        <span className="font-semibold text-primary text-base md:text-lg">{service.price}</span>
                         {service.priceNote && (
                           <span className="text-xs text-muted-foreground ml-1">{service.priceNote}</span>
                         )}
                       </>
                     ) : (
-                      <span className="font-semibold text-primary text-lg">{service.price}</span>
+                      <span className="font-semibold text-primary text-base md:text-lg">{service.price}</span>
                     )}
                   </div>
-                  <Button asChild size="sm" variant="outline">
-                    <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center space-x-1">
+                  <Button asChild size="sm" variant="outline" className="w-full sm:w-auto">
+                    <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center justify-center space-x-1">
                       <span className="text-xs font-medium">
                         {service.title === "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales" ? "Calcular" : service.action}
                       </span>

@@ -400,16 +400,16 @@ export default function ServiciosPage() {
                     )}
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
-                        <div className="flex items-start space-x-3 flex-1">
+                        <div className="flex items-start space-x-3 flex-1 min-w-0">
                           <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                             <service.icon className="h-5 w-5 text-primary" />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <CardTitle className="text-base font-semibold leading-tight mb-2">
+                            <CardTitle className="text-sm md:text-base font-semibold leading-tight mb-2 break-words">
                               {service.title}
                             </CardTitle>
                             {service.badge && (
-                              <Badge variant="secondary" className="text-xs">
+                              <Badge variant="secondary" className="text-xs w-fit">
                                 {service.badge}
                               </Badge>
                             )}
@@ -421,41 +421,41 @@ export default function ServiciosPage() {
                     <CardContent className="pt-0 space-y-4">
                       {/* Description */}
                       <div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
+                        <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                           {service.description}
                         </p>
                       </div>
                       
-                                              {/* Price and Action Row */}
-                        <div className="flex items-center justify-between pt-2 border-t border-border/50">
-                          <div className="flex items-center space-x-2">
-                            {service.price !== "Consultar" && service.price !== "Calcular" && service.price !== "Registrar" && service.price !== "Agregar" ? (
-                              <>
-                                <span className="font-semibold text-primary">$</span>
-                                <span className="font-semibold text-primary">{service.price}</span>
-                                {service.priceNote && (
-                                  <span className="text-xs text-muted-foreground lg:ml-1">{service.priceNote}</span>
-                                )}
-                              </>
-                            ) : (
-                              <span className="font-semibold text-primary">{service.price}</span>
-                            )}
-                          </div>
-                          {service.title === "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales" || service.title === "Presencia Digital (informativo)" ? (
-                            <Button asChild size="sm" className="flex-shrink-0">
-                              <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center">
-                                <Calculator className="h-4 w-4" />
-                              </Link>
-                            </Button>
+                      {/* Price and Action Row */}
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start space-y-2 sm:space-y-0 pt-2 border-t border-border/50">
+                        <div className="flex items-center space-x-2">
+                          {service.price !== "Consultar" && service.price !== "Calcular" && service.price !== "Registrar" && service.price !== "Agregar" ? (
+                            <>
+                              <span className="font-semibold text-primary text-sm md:text-base">$</span>
+                              <span className="font-semibold text-primary text-sm md:text-base">{service.price}</span>
+                              {service.priceNote && (
+                                <span className="text-xs text-muted-foreground">{service.priceNote}</span>
+                              )}
+                            </>
                           ) : (
-                            <Button asChild size="sm" className="flex-shrink-0">
-                              <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center space-x-1">
-                                <span className="text-xs">Consultar</span>
-                                <ChevronRight className="h-3 w-3" />
-                              </Link>
-                            </Button>
+                            <span className="font-semibold text-primary text-sm md:text-base">{service.price}</span>
                           )}
                         </div>
+                        {service.title === "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales" || service.title === "Presencia Digital (informativo)" ? (
+                          <Button asChild size="sm" className="w-full sm:w-auto">
+                            <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center justify-center">
+                              <Calculator className="h-4 w-4" />
+                            </Link>
+                          </Button>
+                        ) : (
+                          <Button asChild size="sm" className="w-full sm:w-auto">
+                            <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center justify-center space-x-1">
+                              <span className="text-xs">Consultar</span>
+                              <ChevronRight className="h-3 w-3" />
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
                 </AnimatedContent>

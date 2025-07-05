@@ -13,14 +13,11 @@ import {
   CheckCircle, 
   ArrowRight, 
   Loader2, 
-  AlertCircle,
-  ChevronDown,
-  Search
+  AlertCircle
 } from "lucide-react"
 import Stepper, { Step } from "./Stepper"
 import businessTypesData from "@/data/business-types.json"
 import { MultiSelect } from "@/components/ui/multiselect"
-import { motion, AnimatePresence } from "framer-motion"
 import confetti from "canvas-confetti"
 import emailjs from '@emailjs/browser'
 import SuccessModal from "@/components/SuccessModal"

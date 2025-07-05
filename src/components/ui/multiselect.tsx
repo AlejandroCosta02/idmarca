@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { createPortal } from "react-dom";
 import { Search, X, Check, ChevronDown } from "lucide-react";
 
 interface MultiSelectProps {
@@ -19,6 +18,56 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
 
   // Detect mobile
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+  // Hooks must always be called
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node) &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+        setSearchTerm("");
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (open && searchRef.current && !isMobile) {
+      searchRef.current.focus();
+    }
+  }, [open, isMobile]);
+
+  useEffect(() => {
+    if (!open || isMobile || !buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    const menuHeight = 300;
+    const shouldOpenUp = spaceBelow < menuHeight && spaceAbove > spaceBelow;
+    const style: React.CSSProperties = {
+      position: "absolute",
+      zIndex: 9999,
+      width: "100%",
+      maxHeight: `${Math.min(menuHeight, shouldOpenUp ? spaceAbove - 20 : spaceBelow - 20)}px`,
+      borderRadius: "8px",
+      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+    };
+    if (shouldOpenUp) {
+      style.bottom = "100%";
+      style.marginBottom = "4px";
+    } else {
+      style.top = "100%";
+      style.marginTop = "4px";
+    }
+    setMenuStyle(style);
+  }, [open, isMobile]);
 
   // Filter options based on search term
   const filteredOptions = options.filter(option =>
@@ -50,68 +99,6 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
       </div>
     );
   }
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target as Node) &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-        setSearchTerm("");
-      }
-    }
-    
-    function handleResize() {
-      if (open && buttonRef.current) {
-        const rect = buttonRef.current.getBoundingClientRect();
-        const isMobile = window.innerWidth < 768;
-        
-        // Calculate available space
-        const spaceBelow = window.innerHeight - rect.bottom;
-        const spaceAbove = rect.top;
-        const menuHeight = isMobile ? 250 : 300;
-        
-        // Determine if we should open up or down
-        const shouldOpenUp = spaceBelow < menuHeight && spaceAbove > spaceBelow;
-        
-        const style: React.CSSProperties = {
-          position: "absolute",
-          zIndex: 9999,
-          width: "100%",
-          maxHeight: `${Math.min(menuHeight, shouldOpenUp ? spaceAbove - 20 : spaceBelow - 20)}px`,
-          borderRadius: "8px",
-          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-        };
-        
-        if (shouldOpenUp) {
-          style.bottom = "100%";
-          style.marginBottom = "4px";
-        } else {
-          style.top = "100%";
-          style.marginTop = "4px";
-        }
-        
-        setMenuStyle(style);
-      }
-    }
-    
-    document.addEventListener("mousedown", handleClickOutside);
-    window.addEventListener("resize", handleResize);
-    
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [open]);
-
-  useEffect(() => {
-    if (open && searchRef.current && window.innerWidth >= 768) {
-      searchRef.current.focus();
-    }
-  }, [open]);
 
   const toggleOption = (option: string) => {
     if (selected.includes(option)) {

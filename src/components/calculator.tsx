@@ -212,12 +212,12 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
               </div>
               <div className="max-w-xs mx-auto">
                 <Select value={selectedBusiness} onValueChange={handleBusinessChange}>
-                  <SelectTrigger className="w-full bg-background text-foreground">
+                  <SelectTrigger className="w-full bg-background text-foreground px-4 py-3 text-base md:text-sm">
                     <SelectValue placeholder="Selecciona tu tipo de negocio" />
                   </SelectTrigger>
                   <SelectContent className="bg-background border-border">
                     {(businessTypesData as { name: string; value: number }[]).map((business) => (
-                      <SelectItem key={business.name} value={business.name} className="text-foreground">
+                      <SelectItem key={business.name} value={business.name} className="text-foreground text-base py-3 md:py-2">
                         {business.name}
                       </SelectItem>
                     ))}
@@ -251,7 +251,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   onChange={handleCustomGoalChange}
                   maxLength={200}
                   placeholder="Otro objetivo (máx. 200 caracteres)"
-                  className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full border rounded px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <div className="text-xs text-muted-foreground text-right mt-1">{customGoal.length}/200</div>
               </div>
@@ -293,14 +293,14 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
               </div>
               <div className="max-w-xs mx-auto space-y-4">
                 {step4Options.map((option) => (
-                  <label key={option} className={`flex items-center gap-3 p-3 rounded border cursor-pointer transition-all ${selectedDomain === option ? 'border-primary bg-primary/5 font-semibold' : 'border-border'}`}>
+                  <label key={option} className={`flex items-center gap-3 p-4 rounded border cursor-pointer transition-all text-base ${selectedDomain === option ? 'border-primary bg-primary/5 font-semibold' : 'border-border'}`}>
                     <input
                       type="radio"
                       name="domain"
                       value={option}
                       checked={selectedDomain === option}
                       onChange={() => setSelectedDomain(option)}
-                      className="form-radio h-5 w-5 text-primary border-primary focus:ring-primary"
+                      className="form-radio h-5 w-5 md:h-4 md:w-4 text-primary border-primary focus:ring-primary"
                     />
                     <span className="text-left">{option}</span>
                   </label>
@@ -349,7 +349,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   required
                   placeholder="Nombre"
                   disabled={isSubmitting}
-                  className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full border rounded px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <input
                   type="email"
@@ -358,7 +358,7 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
                   required
                   placeholder="Email"
                   disabled={isSubmitting}
-                  className="w-full border rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="w-full border rounded px-4 py-3 text-base md:text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <Button 
                   type="submit" 

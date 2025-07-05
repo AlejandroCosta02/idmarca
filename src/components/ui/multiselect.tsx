@@ -81,7 +81,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
     <div className="relative" ref={buttonRef}>
       <button
         type="button"
-        className="w-full border rounded px-3 py-2 text-sm text-left bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+        className="w-full border rounded px-4 py-3 text-base md:text-sm text-left bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
         onClick={() => setOpen((o) => !o)}
       >
         {selected.length === 0 ? (
@@ -89,7 +89,7 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
         ) : (
           <span className="flex flex-wrap gap-1">
             {selected.map((s) => (
-              <span key={s} className="inline-block bg-primary/10 text-primary px-2 py-0.5 rounded text-xs">
+              <span key={s} className="inline-block bg-primary/10 text-primary px-2 py-1 rounded text-sm">
                 {s}
               </span>
             ))}
@@ -101,13 +101,13 @@ export const MultiSelect: React.FC<MultiSelectProps> = ({ options, selected, onC
           {options.map((option) => (
             <label
               key={option}
-              className={`flex items-center gap-2 px-3 py-2 cursor-pointer hover:bg-primary/5 transition ${selected.includes(option) ? 'font-semibold bg-primary/10' : ''}`}
+              className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-primary/5 transition text-base ${selected.includes(option) ? 'font-semibold bg-primary/10' : ''}`}
             >
               <input
                 type="checkbox"
                 checked={selected.includes(option)}
                 onChange={() => toggleOption(option)}
-                className="form-checkbox h-4 w-4 text-primary border-primary focus:ring-primary"
+                className="form-checkbox h-5 w-5 md:h-4 md:w-4 text-primary border-primary focus:ring-primary"
               />
               <span className="text-foreground">{option}</span>
             </label>

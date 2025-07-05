@@ -12,24 +12,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import confetti from "canvas-confetti"
 import emailjs from '@emailjs/browser'
 
-// Additional services that can add to the price
-const additionalServices = [
-  {
-    name: "Búsqueda de Antecedentes",
-    price: 25,
-    description: "Verificación de disponibilidad"
-  },
-  {
-    name: "Múltiples Clases",
-    price: 50,
-    description: "Por cada clase adicional"
-  },
-  {
-    name: "Urgencia",
-    price: 75,
-    description: "Tramitación prioritaria"
-  }
-]
+// Additional services removed as they're not used
 
 // Step 2 options
 const step2Options = [
@@ -58,7 +41,6 @@ const step4Options = [
 export function Calculator() {
   const [selectedBusiness, setSelectedBusiness] = useState<string>("")
   const [selectedBusinessValue, setSelectedBusinessValue] = useState<number | null>(null)
-  const [selectedServices, setSelectedServices] = useState<string[]>([])
   const [totalPrice, setTotalPrice] = useState(0)
   const [isCompleted, setIsCompleted] = useState(false)
   const [selectedGoals, setSelectedGoals] = useState<string[]>([])
@@ -93,7 +75,6 @@ export function Calculator() {
   // Mark step as touched when user interacts
   useEffect(() => {
     setTriedNext((prev) => ({ ...prev, [currentStep]: false }))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep])
 
   // Validation logic for each step
@@ -467,7 +448,6 @@ Precio estimado: $${selectedBusinessValue || 0} USD`,
               onClick={() => {
                 setIsCompleted(false)
                 setSelectedBusiness("")
-                setSelectedServices([])
                 setTotalPrice(0)
               }}
             >

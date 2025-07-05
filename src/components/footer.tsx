@@ -16,7 +16,6 @@ const footerLinks = {
     { name: "Nosotros", href: "/nosotros" },
     { name: "Equipo", href: "/nosotros" },
     { name: "Blog", href: "/blog" },
-    { name: "Prensa", href: "/prensa" },
   ],
   legal: [
     { name: "Política de Privacidad", href: "/privacidad" },
@@ -26,7 +25,7 @@ const footerLinks = {
   contacto: [
     { name: "Contacto", href: "/contacto" },
     { name: "Soporte", href: "/soporte" },
-    { name: "WhatsApp", href: "https://wa.me/5491112345678" },
+    { name: "WhatsApp", href: "https://wa.me/5491159104078" },
   ],
 }
 
@@ -54,10 +53,10 @@ export function Footer() {
             </div>
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">
-                📧 info@idmarca.com
+                📧 contacto@idmarca.com
               </p>
               <p className="text-sm text-muted-foreground">
-                📞 +54 11 1234-5678
+                📞 +54 9 11 5910-4078
               </p>
               <p className="text-sm text-muted-foreground">
                 📍 Buenos Aires, Argentina
@@ -108,6 +107,7 @@ export function Footer() {
                   <Link
                     href={link.href}
                     className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    {...(link.name === "WhatsApp" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   >
                     {link.name}
                   </Link>

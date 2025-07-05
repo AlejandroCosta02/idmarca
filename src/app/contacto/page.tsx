@@ -42,7 +42,7 @@ const structuredData = {
         "@type": "ContactPoint",
         "contactType": "customer service",
         "telephone": "+54-11-1234-5678", // Add your actual phone
-        "email": "info@idmarca.com", // Add your actual email
+        "email": "contacto@idmarca.com", // Only use contacto@idmarca.com
         "availableLanguage": "Spanish",
         "areaServed": "AR"
       }
@@ -66,7 +66,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Teléfono",
-    value: "+54 11 1234-5678",
+    value: "+54 9 11 5910-4078",
     description: "Llámanos directamente"
   },
   {

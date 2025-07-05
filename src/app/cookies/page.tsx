@@ -16,44 +16,46 @@ export default function CookiesPage() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navigation />
-      <main className="flex-1 py-16">
-        <div className="container mx-auto max-w-3xl px-4">
-          <Card>
+      <main className="flex-1 flex items-center justify-center bg-muted/30">
+        <div className="max-w-2xl w-full mx-auto p-8">
+          <Card className="bg-background/95 shadow-xl">
             <CardHeader>
-              <CardTitle>Política de Cookies</CardTitle>
-              <CardDescription>
-                Última actualización: Mayo 2024
+              <CardTitle className="text-3xl text-primary mb-2">Política de Cookies</CardTitle>
+              <CardDescription className="text-lg text-muted-foreground">
+                Información clara y transparente sobre el uso de cookies en nuestro sitio web.
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6 text-base text-muted-foreground">
+            <CardContent className="space-y-6 text-left">
               <section>
-                <h2 className="text-lg font-semibold mb-2">¿Qué son las cookies?</h2>
+                <h2 className="text-xl font-semibold mb-2">¿Qué son las cookies?</h2>
                 <p>
-                  Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Sirven para recordar tus preferencias, mejorar tu experiencia de navegación y recopilar información estadística anónima.
+                  Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo cuando visitas un sitio web. Permiten que el sitio recuerde tus preferencias y mejoran tu experiencia de navegación.
                 </p>
               </section>
               <section>
-                <h2 className="text-lg font-semibold mb-2">¿Qué tipos de cookies utilizamos?</h2>
-                <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Cookies esenciales:</strong> Necesarias para el funcionamiento básico del sitio web.</li>
-                  <li><strong>Cookies de análisis:</strong> Nos ayudan a entender cómo los usuarios interactúan con nuestro sitio para mejorar nuestros servicios.</li>
-                  <li><strong>Cookies de preferencia:</strong> Permiten recordar tus preferencias, como el idioma o la región.</li>
+                <h2 className="text-xl font-semibold mb-2">¿Qué tipos de cookies utilizamos?</h2>
+                <ul className="list-disc pl-6">
+                  <li><b>Cookies esenciales:</b> necesarias para el funcionamiento básico del sitio.</li>
+                  <li><b>Cookies de preferencias:</b> recuerdan tus configuraciones y preferencias.</li>
+                  <li><b>Cookies de análisis:</b> nos ayudan a entender cómo los usuarios interactúan con el sitio para mejorar nuestros servicios (por ejemplo, Google Analytics).</li>
                 </ul>
               </section>
               <section>
-                <h2 className="text-lg font-semibold mb-2">¿Cómo puedes gestionar las cookies?</h2>
+                <h2 className="text-xl font-semibold mb-2">¿Por qué usamos cookies?</h2>
+                <ul className="list-disc pl-6">
+                  <li>Para mejorar la funcionalidad y seguridad del sitio.</li>
+                  <li>Para analizar el uso y rendimiento de nuestras páginas.</li>
+                  <li>Para recordar tus preferencias y personalizar tu experiencia.</li>
+                </ul>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold mb-2">¿Cómo puedes gestionar las cookies?</h2>
                 <p>
                   Puedes configurar tu navegador para aceptar o rechazar cookies, así como para eliminarlas en cualquier momento. Ten en cuenta que deshabilitar cookies puede afectar el funcionamiento de algunas partes del sitio.
                 </p>
               </section>
               <section>
-                <h2 className="text-lg font-semibold mb-2">Cookies de terceros</h2>
-                <p>
-                  Utilizamos servicios de terceros, como Google Analytics, que pueden instalar sus propias cookies para recopilar información anónima sobre el uso del sitio.
-                </p>
-              </section>
-              <section>
-                <h2 className="text-lg font-semibold mb-2">Contacto</h2>
+                <h2 className="text-xl font-semibold mb-2">Contacto</h2>
                 <p>
                   Si tienes dudas sobre nuestra política de cookies, puedes contactarnos en <a href="mailto:contacto@idmarca.com" className="text-primary underline">contacto@idmarca.com</a>.
                 </p>

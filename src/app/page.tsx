@@ -16,7 +16,13 @@ import {
   FileText, 
   Search,
   RefreshCw,
-  Star
+  Star,
+  AlertTriangle,
+  Pencil,
+  FileCheck,
+  Globe,
+  Calculator,
+  ChevronRight
 } from "lucide-react"
 import TiltedCard from "@/components/tilted-card"
 import CountUp from "@/components/count-up"
@@ -48,7 +54,7 @@ const structuredData = {
   "logo": "https://idmarca.com/logos/logo.svg",
   "image": "https://idmarca.com/logos/logo.svg",
   "telephone": "+54-11-1234-5678", // Add your actual phone number
-  "email": "info@idmarca.com", // Add your actual email
+  "email": "contacto@idmarca.com", // Only use contacto@idmarca.com
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "AR",
@@ -106,46 +112,72 @@ const structuredData = {
   }
 }
 
-const services = [
+const updatedServices = [
   {
-    title: "Registro de Marcas",
-    description: "Registro completo de marcas comerciales ante INPI",
-    features: [
-      "Búsqueda previa de disponibilidad",
-      "Preparación de documentación",
-      "Seguimiento del trámite",
-      "Certificado de registro"
-    ],
-    price: "$205.000 ARS",
-    badge: "Principal",
-    href: "/servicios",
-    popular: true
-  },
-  {
-    title: "Búsqueda de Marcas",
-    description: "Verificación de disponibilidad de marcas",
-    features: [
-      "Búsqueda en base de datos INPI",
-      "Análisis de conflictos",
-      "Informe detallado",
-      "Recomendaciones"
-    ],
-    price: "$30.500 ARS",
+    title: "Búsqueda de Antecedentes",
+    description: "Búsqueda fonética y visual + análisis de conflictos + informe estratégico + asesoramiento",
+    price: "90",
+    priceNote: "USD",
     badge: "Básico",
-    href: "/servicios"
+    href: "/contacto",
+    icon: Search,
+    popular: false,
+    action: "Consultar"
   },
   {
-    title: "Renovación de Marcas",
-    description: "Renovación de registros existentes",
-    features: [
-      "Verificación de vencimiento",
-      "Preparación de documentación",
-      "Pago de tasas",
-      "Seguimiento"
-    ],
-    price: "$155.000 ARS",
+    title: "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales",
+    description: "Presentación electrónica + seguimiento + respuesta a vistas + certificado + asesoramiento legal",
+    price: "Consultar",
+    priceNote: "",
+    badge: "Principal",
+    href: "/calculadora",
+    icon: FileText,
+    popular: true,
+    action: "Calcular"
+  },
+  {
+    title: "Renovación de Marca",
+    description: "Declaración de uso + pago de tasas + gestión completa",
+    price: "120",
+    priceNote: "USD (por clase)",
     badge: "Mantenimiento",
-    href: "/servicios"
+    href: "/contacto",
+    icon: RefreshCw,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Oposición de Marca",
+    description: "Defensa legal + presentación de argumentos + seguimiento",
+    price: "90",
+    priceNote: "USD (por clase)",
+    badge: "Defensa",
+    href: "/contacto",
+    icon: AlertTriangle,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Transferencia de Titularidad",
+    description: "Contrato de cesión + presentación + confirmación",
+    price: "140",
+    priceNote: "USD",
+    badge: "Gestión",
+    href: "/contacto",
+    icon: Shield,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Presentación de Escritos",
+    description: "Redacción legal + presentación ante INPI + seguimiento",
+    price: "63",
+    priceNote: "USD",
+    badge: "Escritos",
+    href: "/contacto",
+    icon: Pencil,
+    popular: false,
+    action: "Consultar"
   }
 ]
 
@@ -465,18 +497,61 @@ export default function HomePage() {
             </FadeContent>
             <FadeContent blur={true} duration={1100} threshold={0.1} initialOpacity={0}>
               <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                Servicios completos de registro y gestión de marcas comerciales 
-                para proteger tu propiedad intelectual.
+                Servicios destacados para proteger tu marca y tu negocio.
               </p>
             </FadeContent>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+          <div className="max-w-4xl mx-auto divide-y divide-border/50 bg-background/80 rounded-xl shadow-sm">
+            {updatedServices.map((service, index) => (
+              <div
+                key={index}
+                className="group flex flex-col md:flex-row items-start md:items-center justify-between px-6 py-6 transition-all duration-200 hover:bg-primary/10"
+              >
+                {/* Left: Icon, Title, Description */}
+                <div className="flex items-start space-x-4 flex-1 min-w-0">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <service.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <span className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
+                        {service.title}
+                      </span>
+                      {service.badge && (
+                        <Badge variant="secondary" className="text-xs">{service.badge}</Badge>
+                      )}
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed truncate md:whitespace-normal max-w-md">
+                      {service.description}
+                    </p>
+                  </div>
+                </div>
+                {/* Right: Price, Action */}
+                <div className="flex flex-col md:items-end items-start mt-4 md:mt-0 min-w-[160px]">
+                  <div className="flex items-center space-x-1 mb-2 md:mb-3">
+                    {service.price !== "Consultar" && service.price !== "Calcular" && service.price !== "Registrar" && service.price !== "Agregar" ? (
+                      <>
+                        <span className="font-semibold text-primary text-lg">$</span>
+                        <span className="font-semibold text-primary text-lg">{service.price}</span>
+                        {service.priceNote && (
+                          <span className="text-xs text-muted-foreground ml-1">{service.priceNote}</span>
+                        )}
+                      </>
+                    ) : (
+                      <span className="font-semibold text-primary text-lg">{service.price}</span>
+                    )}
+                  </div>
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center space-x-1">
+                      <span className="text-xs font-medium">
+                        {service.title === "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales" ? "Calcular" : service.action}
+                      </span>
+                    </Link>
+                  </Button>
+                </div>
+              </div>
             ))}
           </div>
-          
           <div className="text-center mt-12">
             <Button asChild variant="outline" size="lg">
               <Link href="/servicios">

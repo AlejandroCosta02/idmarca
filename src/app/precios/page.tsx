@@ -12,7 +12,12 @@ import {
   Search, 
   Check,
   X,
-  Shield
+  Shield,
+  RefreshCw,
+  AlertTriangle,
+  Pencil,
+  FileCheck,
+  Globe
 } from "lucide-react"
 import type { Metadata } from "next"
 
@@ -107,74 +112,116 @@ const structuredData = {
   ]
 }
 
-const pricingPlans = [
+const services = [
   {
-    name: "Básico",
-    description: "Para verificar la disponibilidad de tu marca",
-    price: "$35.500 ARS",
-    period: "por servicio",
-    features: [
-      "Búsqueda en base de datos INPI",
-      "Análisis de conflictos básico",
-      "Informe de disponibilidad",
-      "Recomendaciones iniciales",
-      "Soporte por email"
-    ],
-    notIncluded: [
-      "Preparación y presentación de documentación",
-      "Seguimiento del trámite",
-      "Asesoramiento legal completo"
-    ],
-    popular: false,
+    title: "Búsqueda de Antecedentes",
+    description: "Búsqueda fonética y visual + análisis de conflictos + informe estratégico + asesoramiento",
+    price: "90",
+    priceNote: "USD",
+    badge: "Básico",
     href: "/contacto",
-    icon: Search
+    icon: Search,
+    popular: false,
+    action: "Consultar"
   },
   {
-    name: "Estándar",
-    description: "Registro completo de marca comercial",
-    price: "$205.000 ARS",
-    period: "por servicio",
-    features: [
-      "Búsqueda previa de disponibilidad",
-      "Preparación de documentación completa",
-      "Presentación de la documentación correspondiente",
-      "Seguimiento del trámite",
-      "Respuesta a observaciones",
-      "Certificado de registro",
-      "Asesoramiento legal completo",
-      "Soporte prioritario"
-    ],
-    notIncluded: [
-      "Renovación de marca",
-      "Defensa en oposiciones",
-      "Monitoreo continuo"
-    ],
+    title: "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales",
+    description: "Presentación electrónica + seguimiento + respuesta a vistas + certificado + asesoramiento legal",
+    price: "Consultar",
+    priceNote: "",
+    badge: "Principal",
+    href: "/calculadora",
+    icon: FileText,
     popular: true,
-    href: "/contacto",
-    icon: FileText
+    action: "Calcular"
   },
   {
-    name: "Premium",
-    description: "Servicio integral con monitoreo continuo",
-    price: "$250.000 ARS",
-    period: "por servicio",
-    features: [
-      "Todo lo del plan Estándar",
-      "Renovación de marca incluida",
-      "Monitoreo de marcas similares",
-      "Defensa en oposiciones",
-      "Asesoramiento estratégico",
-      "Soporte telefónico 24/7",
-      "Informes periódicos",
-      "Gestión de conflictos"
-    ],
-    notIncluded: [
-      "Litigios complejos",
-      "Servicios internacionales"
-    ],
-    popular: false,
+    title: "Renovación de Marca",
+    description: "Declaración de uso + pago de tasas + gestión completa",
+    price: "120",
+    priceNote: "USD (por clase)",
+    badge: "Mantenimiento",
     href: "/contacto",
-    icon: Shield
+    icon: RefreshCw,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Oposición de Marca",
+    description: "Defensa legal + presentación de argumentos + seguimiento",
+    price: "90",
+    priceNote: "USD (por clase)",
+    badge: "Defensa",
+    href: "/contacto",
+    icon: AlertTriangle,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Transferencia de Titularidad",
+    description: "Contrato de cesión + presentación + confirmación",
+    price: "140",
+    priceNote: "USD",
+    badge: "Gestión",
+    href: "/contacto",
+    icon: Shield,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Presentación de Escritos",
+    description: "Redacción legal + presentación ante INPI + seguimiento",
+    price: "63",
+    priceNote: "USD",
+    badge: "Escritos",
+    href: "/contacto",
+    icon: Pencil,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Declaración Jurada de Uso de Medio Término",
+    description: "Preparación + presentación + confirmación",
+    price: "99",
+    priceNote: "USD",
+    badge: "Legal",
+    href: "/contacto",
+    icon: FileCheck,
+    popular: false,
+    action: "Consultar"
+  },
+  {
+    title: "Dominio NIC.ar (.com.ar)",
+    description: "Registro anual en NIC.ar",
+    price: "30",
+    priceNote: "USD",
+    badge: "Dominio",
+    href: "/contacto",
+    icon: Globe,
+    popular: false,
+    action: "Registrar"
+  },
+  {
+    title: "PDF Inteligente (opcional)",
+    description: "Comprobante profesional en tiempo real con tu branding",
+    price: "8",
+    priceNote: "USD",
+    badge: "Opcional",
+    href: "/contacto",
+    icon: FileText,
+    popular: false,
+    action: "Agregar"
+  },
+  {
+    title: "Presencia Digital (informativo)",
+    description: "Servicios web ofrecidos por nuestro equipo especializado: página básica, portal institucional y tienda online",
+    price: "Consultar",
+    priceNote: "",
+    badge: "Digital",
+    href: "/contacto",
+    icon: Globe,
+    popular: false,
+    action: "Consultar"
   }
 ]
 
@@ -221,95 +268,70 @@ export default function PreciosPage() {
         <div className="container mx-auto">
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4">
-              Precios Transparentes
+              Nuestros valores
             </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              Planes y{" "}
-              <span className="text-primary">Precios</span>
+              Valores para <span className="text-primary">proteger tu marca</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
-              Precios claros y transparentes para proteger tu marca comercial. 
-              Sin costos ocultos, sin sorpresas.
+              Valores claros y transparentes para proteger tu marca comercial. Sin costos ocultos, sin sorpresas.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Pricing Plans */}
+      {/* Services Section */}
       <section className="py-20 bg-muted/30">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Planes de Servicio
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Elige el plan que mejor se adapte a tus necesidades
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {pricingPlans.map((plan, index) => (
-              <Card key={index} className={`relative ${plan.popular ? 'border-primary shadow-lg scale-105' : ''}`}>
-                {plan.popular && (
-                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-                    Más Popular
-                  </Badge>
-                )}
-                <CardHeader className="text-center">
-                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <plan.icon className="h-8 w-8 text-primary" />
+          <div className="max-w-4xl mx-auto divide-y divide-border/50 bg-background/80 rounded-xl shadow-sm">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group flex flex-col md:flex-row items-start md:items-center justify-between px-6 py-6 transition-all duration-200 hover:bg-primary/10"
+              >
+                {/* Left: Icon, Title, Description */}
+                <div className="flex items-start space-x-4 flex-1 min-w-0">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                    <service.icon className="h-6 w-6 text-primary" />
                   </div>
-                  <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                  <CardDescription className="text-base">
-                    {plan.description}
-                  </CardDescription>
-                  <div className="pt-4">
-                    <div className="text-4xl font-bold text-primary">
-                      {plan.price}
+                  <div className="min-w-0">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <span className="font-semibold text-lg leading-tight group-hover:text-primary transition-colors">
+                        {service.title}
+                      </span>
+                      {service.badge && (
+                        <Badge variant="secondary" className="text-xs">{service.badge}</Badge>
+                      )}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      {plan.period}
-                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed truncate md:whitespace-normal max-w-md">
+                      {service.description}
+                    </p>
                   </div>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold mb-3">Incluye:</h4>
-                    <ul className="space-y-2">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center space-x-2">
-                          <Check className="h-4 w-4 text-primary flex-shrink-0" />
-                          <span className="text-sm">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
+                </div>
+                {/* Right: Price, Action */}
+                <div className="flex flex-col md:items-end items-start mt-4 md:mt-0 min-w-[160px]">
+                  <div className="flex items-center space-x-1 mb-2 md:mb-3">
+                    {service.price !== "Consultar" && service.price !== "Calcular" && service.price !== "Registrar" && service.price !== "Agregar" ? (
+                      <>
+                        <span className="font-semibold text-primary text-lg">$</span>
+                        <span className="font-semibold text-primary text-lg">{service.price}</span>
+                        {service.priceNote && (
+                          <span className="text-xs text-muted-foreground ml-1">{service.priceNote}</span>
+                        )}
+                      </>
+                    ) : (
+                      <span className="font-semibold text-primary text-lg">{service.price}</span>
+                    )}
                   </div>
-                  
-                  {plan.notIncluded.length > 0 && (
-                    <>
-                      <Separator />
-                      <div>
-                        <h4 className="font-semibold mb-3 text-muted-foreground">No incluye:</h4>
-                        <ul className="space-y-2">
-                          {plan.notIncluded.map((item, itemIndex) => (
-                            <li key={itemIndex} className="flex items-center space-x-2">
-                              <X className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                              <span className="text-sm text-muted-foreground">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </>
-                  )}
-                  
-                  <Button asChild className="w-full" variant={plan.popular ? "default" : "outline"}>
-                    <Link href={plan.href}>
-                      Elegir {plan.name}
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                  <Button asChild size="sm" variant="outline">
+                    <Link href={`${service.href}?service=${encodeURIComponent(service.title)}`} className="flex items-center space-x-1">
+                      <span className="text-xs font-medium">
+                        {service.title === "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales" || service.title === "Presencia Digital (informativo)" ? "Calcular" : service.action}
+                      </span>
                     </Link>
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>

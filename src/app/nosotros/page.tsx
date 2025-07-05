@@ -18,6 +18,7 @@ import {
   Star
 } from "lucide-react"
 import type { Metadata } from "next"
+import AnimatedContent from "@/components/AnimatedContent"
 
 export const metadata: Metadata = {
   title: "Nosotros | IDmarca - Especialistas en Registro de Marcas",
@@ -113,7 +114,7 @@ const values = [
 // ]
 
 const stats = [
-  { number: "500+", label: "Marcas Registradas", icon: Clock },
+  { number: "50+", label: "Marcas Registradas", icon: Clock },
   { number: "98%", label: "Tasa de Éxito", icon: CheckCircle },
   { number: "10+", label: "Años de Experiencia", icon: Award },
   { number: "1000+", label: "Clientes Satisfechos", icon: Users }
@@ -127,7 +128,7 @@ const timeline = [
   },
   {
     year: "2016",
-    title: "Primeros 100 registros",
+    title: "Primeros 50 registros",
     description: "Alcanzamos nuestro primer hito con 100 marcas registradas exitosamente"
   },
   {
@@ -161,54 +162,56 @@ export default function NosotrosPage() {
       {/* Hero Section */}
       <section className="py-20 lg:py-32">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <Badge variant="secondary" className="text-sm">
-                Sobre Nosotros
-              </Badge>
-              <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
-                Protegiendo{" "}
-                <span className="text-primary">Tu Marca</span>{" "}
-                desde 2014
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Somos especialistas en propiedad intelectual con más de 10 años de experiencia 
-                ayudando a empresas y emprendedores a proteger sus marcas comerciales en Argentina.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg">
-                  <Link href="/contacto">
-                    Conoce Nuestro Equipo
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button variant="outline" asChild size="lg">
-                  <Link href="/servicios">Ver Servicios</Link>
-                </Button>
+          <AnimatedContent distance={60} duration={1}>
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-8">
+                <Badge variant="secondary" className="text-sm">
+                  Sobre Nosotros
+                </Badge>
+                <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+                  Protegiendo{" "}
+                  <span className="text-primary">Tu Marca</span>{" "}
+                  desde 2014
+                </h1>
+                <p className="text-xl text-muted-foreground">
+                  Somos especialistas en propiedad intelectual con más de 10 años de experiencia 
+                  ayudando a empresas y emprendedores a proteger sus marcas comerciales en Argentina.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg">
+                    <Link href="/contacto">
+                      Conoce Nuestro Equipo
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button variant="outline" asChild size="lg">
+                    <Link href="/servicios">Ver Servicios</Link>
+                  </Button>
+                </div>
               </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl p-8">
-                <div className="space-y-6">
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-primary mb-2">Nuestra Misión</h3>
-                    <p className="text-muted-foreground">
-                      Facilitar el acceso a la protección de marcas comerciales para que 
-                      cada emprendedor pueda proteger su identidad de marca.
-                    </p>
-                  </div>
-                  <Separator />
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-primary mb-2">Nuestra Visión</h3>
-                    <p className="text-muted-foreground">
-                      Ser la empresa líder en servicios de propiedad intelectual, 
-                      reconocida por la excelencia y la innovación.
-                    </p>
+              <div className="relative">
+                <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl p-8">
+                  <div className="space-y-6">
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold text-primary mb-2">Nuestra Misión</h3>
+                      <p className="text-muted-foreground">
+                        Facilitar el acceso a la protección de marcas comerciales para que 
+                        cada emprendedor pueda proteger su identidad de marca.
+                      </p>
+                    </div>
+                    <Separator />
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold text-primary mb-2">Nuestra Visión</h3>
+                      <p className="text-muted-foreground">
+                        Ser la empresa líder en servicios de propiedad intelectual, 
+                        reconocida por la excelencia y la innovación.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedContent>
         </div>
       </section>
 
@@ -217,17 +220,19 @@ export default function NosotrosPage() {
         <div className="container mx-auto">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                  <stat.icon className="h-8 w-8 text-primary" />
+              <AnimatedContent key={index} distance={30} duration={0.7} delay={0.05 * index}>
+                <div className="text-center">
+                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                    <stat.icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  {stat.label}
-                </div>
-              </div>
+              </AnimatedContent>
             ))}
           </div>
         </div>
@@ -247,19 +252,21 @@ export default function NosotrosPage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <Card key={index} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <value.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{value.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base">
-                    {value.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+              <AnimatedContent key={index} distance={30} duration={0.7} delay={0.05 * index}>
+                <Card className="text-center">
+                  <CardHeader>
+                    <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                      <value.icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <CardTitle className="text-xl">{value.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {value.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </AnimatedContent>
             ))}
           </div>
         </div>
@@ -280,17 +287,19 @@ export default function NosotrosPage() {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
               {timeline.map((item, index) => (
-                <div key={index} className="flex items-start space-x-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-lg">
-                      {item.year}
+                <AnimatedContent key={index} distance={30} duration={0.7} delay={0.05 * index}>
+                  <div className="flex items-start space-x-6">
+                    <div className="flex-shrink-0">
+                      <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center font-bold text-lg">
+                        {item.year}
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.description}</p>
                     </div>
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </div>
-                </div>
+                </AnimatedContent>
               ))}
             </div>
           </div>
@@ -310,47 +319,55 @@ export default function NosotrosPage() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Clock className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Transparencia Total</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Te mantenemos informado en cada paso del proceso con actualizaciones regulares.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Heart className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Atención Personalizada</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Cada cliente recibe atención personalizada y asesoramiento específico para su caso.
-                </CardDescription>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                  <Star className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Proceso Eficiente</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Optimizamos cada trámite para obtener resultados en el menor tiempo posible.
-                </CardDescription>
-              </CardContent>
-            </Card>
+            {[0, 1, 2].map((i) => (
+              <AnimatedContent key={i} distance={30} duration={0.7} delay={0.05 * i}>
+                {i === 0 && (
+                  <Card>
+                    <CardHeader>
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <Clock className="h-6 w-6 text-primary" />
+                      </div>
+                      <CardTitle>Transparencia Total</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>
+                        Te mantenemos informado en cada paso del proceso con actualizaciones regulares.
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                )}
+                {i === 1 && (
+                  <Card>
+                    <CardHeader>
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <Heart className="h-6 w-6 text-primary" />
+                      </div>
+                      <CardTitle>Atención Personalizada</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>
+                        Cada cliente recibe atención personalizada y asesoramiento específico para su caso.
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                )}
+                {i === 2 && (
+                  <Card>
+                    <CardHeader>
+                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <Star className="h-6 w-6 text-primary" />
+                      </div>
+                      <CardTitle>Proceso Eficiente</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription>
+                        Optimizamos cada trámite para obtener resultados en el menor tiempo posible.
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                )}
+              </AnimatedContent>
+            ))}
           </div>
         </div>
       </section>

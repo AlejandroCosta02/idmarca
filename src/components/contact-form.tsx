@@ -6,22 +6,28 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { CheckCircle, Loader2, AlertCircle } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import emailjs from '@emailjs/browser'
+import { useSearchParams } from 'next/navigation'
 
+// Updated services list to match the servicios page
 const services = [
-  "Registro de Marcas",
-  "Búsqueda de Marcas",
-  "Renovación de Marcas",
-  "Oposición de Marcas",
-  "Transferencias de Titularidad",
+  "Búsqueda de Antecedentes",
+  "Registro de Marcas, Patentes, Modelos de Utilidad y Diseños Industriales",
+  "Renovación de Marca",
+  "Oposición de Marca",
+  "Transferencia de Titularidad",
   "Presentación de Escritos",
-  "Declaración Jurada de Uso",
-  "Asesoramiento Legal",
+  "Declaración Jurada de Uso de Medio Término",
+  "Dominio NIC.ar (.com.ar)",
+  "PDF Inteligente (opcional)",
+  "Presencia Digital (informativo)",
   "Otro"
 ]
 
 export function ContactForm() {
+  const searchParams = useSearchParams()
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -33,6 +39,26 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
   const [submitMessage, setSubmitMessage] = useState("")
+
+  // Handle URL parameter for pre-filling service
+  useEffect(() => {
+    const serviceParam = searchParams.get('service')
+    if (serviceParam) {
+      // Decode the service parameter and find the matching service
+      const decodedService = decodeURIComponent(serviceParam)
+      const matchingService = services.find(service => 
+        service.toLowerCase().includes(decodedService.toLowerCase()) ||
+        decodedService.toLowerCase().includes(service.toLowerCase())
+      )
+      
+      if (matchingService) {
+        setFormData(prev => ({
+          ...prev,
+          service: matchingService
+        }))
+      }
+    }
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
